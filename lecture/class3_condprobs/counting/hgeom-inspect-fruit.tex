@@ -1,0 +1,24 @@
+\question Suppose that a shipment of 100 fruit crates has 11 crates in which the
+fruit shows signs of spoilage.  A quality control inspection selects 8 crates
+at random, opens these selected crates, and then counts the number (out of 8)
+in which the fruit shows signs of spoilage.  What is the probability that
+exactly two crates in the sample show signs of spoilage?
+
+
+
+\begin{solution}
+Let $X$ be the number of spoiled crates in the sample.  This is a
+hypergeometric random variable with $n = 8$ elements in the sample, $N = 100$
+elements in the population, and $r = 11$ success elements in the population
+(namely, the spoiled crates).  Thus,
+
+\[
+  P(X = 2)
+    = \frac{\binom{r}{2} \binom{N - r}{n - 2}}{\binom{N}{n}}
+    = \frac{\binom{11}{2} \binom{89}{6}}{\binom{100}{8}}
+    \approx .171.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+

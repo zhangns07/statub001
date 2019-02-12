@@ -1,0 +1,364 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%This is a science homework template. Modify the preamble to suit your needs. 
+%The junk text is   there for you to immediately see how the headers/footers look at first 
+%typesetting.
+
+
+\documentclass[11pt]{exam}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm}
+%geometry (sets margin) and other useful packages
+\usepackage{alltt}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{fullpage}
+\usepackage{graphicx,ctable,booktabs}
+\usepackage{hyperref}
+
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent{Problem }
+       }
+       }
+       {%\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+       \begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+
+
+\DeclareMathOperator*{\sd}{sd}
+
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\lhead{Problem \thesection}
+%\chead{} 
+%\rhead{\thepage} 
+%\lfoot{\small\scshape course name}
+%\cfoot{} 
+%\rfoot{\footnotesize HW \#1}
+%\renewcommand{\headrulewidth}{.3pt}
+%\renewcommand{\footrulewidth}{.3pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%Contents of problem set
+%    
+\begin{document}
+
+\begin{center}
+  \large
+  \textbf{Homework \#4 -- Due Thursday, Aug.~2} \\
+  STAT-UB.0001 -- Statistics for Business Control \\
+\end{center}
+
+
+\thispagestyle{empty}
+
+
+\begin{problem}{}
+
+Find the probability that a standard normal random variable is:
+
+\begin{enumerate}[(a)]
+
+  \item Greater than zero
+
+\begin{solution}
+  \[
+    P(Z > 0) = 0.5
+  \]
+\end{solution}
+
+  \item Greater than $-1.4$
+
+\begin{solution}
+  \[
+    %P(Z > -1.5) = 0.93319
+  \]
+\end{solution}
+
+  \item Less than $-0.7$
+
+\begin{solution}
+  \[
+   % P(Z < -0.3) = 0.3821
+  \]
+\end{solution}
+
+  \item Between $-1$ and $2$
+
+\begin{solution}
+  \[
+    %P(-2 \leq Z \leq 1) = 0.8413 - 0.02275 = 0.81855
+  \]
+\end{solution}
+
+  \item Less than $-0.5$ or greater than $1.7$
+\begin{solution}
+\end{solution}
+
+  \item Equal to $1$.
+
+\begin{solution}
+  \[
+    %P(Z = 1) = 0
+  \]
+\end{solution}
+
+
+\end{enumerate}
+
+\end{problem}
+
+
+
+\begin{problem}{}
+
+Find a value of a standard normal random variable $Z$ (call it $z_0$)
+such that
+
+\begin{enumerate}[(a)]
+
+  \item $P(Z < z_0) = .30$
+\begin{solution}
+  \[
+    z_0 = -0.8416
+  \]
+\end{solution}
+
+  \item $P(Z > z_0) = .16$
+
+\begin{solution}
+  \[
+    z_0 = 1.96
+  \]
+\end{solution}
+
+  \item $P(-z_0 < Z < z_0) = .90$
+
+\begin{solution}
+  \[
+    z_0 = 1.4051
+  \]
+\end{solution}
+
+%  \item $P(-z_0 < Z < 0) = .4798$
+
+%  \item $P(-1 < Z < z_0) = .5328$.
+
+\end{enumerate}
+
+\end{problem}
+
+
+
+\begin{problem}{}
+
+Suppose that $X$ is normally distributed with mean $11$ and standard
+deviation $2$. Find
+
+\begin{enumerate}[(a)]
+
+  \item $P(10 < X < 12)$
+
+\begin{solution}
+\begin{align*}
+  P(10 < X < 12)
+    &= P\left(\frac{10-11}{2} < \frac{X - 11}{2} < \frac{12 - 11}{2}\right) \\
+    &= P(-0.5 < Z < 0.5) \\
+    &= 0.3829 
+\end{align*}
+
+\end{solution}
+%  \item $P(6 < X < 10)$
+
+  \item $P(X > 7.6)$.
+
+\begin{solution}
+\begin{align*}
+  P(X > 7.6)
+    &= P\left(\frac{X - 11}{2} > \frac{7.6 - 11}{2}\right) \\
+    &= P(Z > -1.7) \\
+    &= 1 - 0.04457 \\
+    &= 0.95543.
+\end{align*}
+\end{solution}
+
+\end{enumerate}
+
+\end{problem}
+
+
+
+\begin{problem}{}
+
+A Pepsi machine in a Burger King store can be regulated so that it dispenses
+an average of $\mu$ ounces per cup. If the amount dispensed is normally
+distributed with standard deviation $0.3$ ounces, what should be the setting
+for $\mu$ so that $8$-ounce cups will overflow only $1\%$ of the time?
+
+\begin{solution}
+Let $X$ be the amount dispensed from the machine.  We want to find $\mu$ such
+that $P(X > 8) = 0.01$.  Thus,
+\begin{align*}
+  P\left(\frac{X - \mu}{0.2} > \frac{8 - \mu}{0.2}\right) &= 0.01 \\
+  P\left(Z > \frac{8 - \mu}{0.2}\right) &= 0.01,
+\end{align*}
+so that
+\[
+  \frac{8 - \mu}{0.2} = 2.3263,
+\]
+and hence
+\begin{align*}
+ \mu &= 8 - (0.2) (2.3263) \\
+     &= 7.53474.
+\end{align*}
+\end{solution}
+
+\end{problem}
+
+
+
+\begin{problem}{}
+
+Suppose that annual stock returns for a particular company are normally
+distributed with a mean of $18\%$ and a standard deviation of $6\%$. You are
+going to invest in this stock for one year.  (Note: In reality, annual returns
+tend to be more nearly normally distributed than daily returns.)
+Find that the probability that your one-year return will exceed $26\%$.
+
+\begin{solution}
+Let $X$ be the annual return, in percent.  This is a normal random variable
+with mean $\mu = 16$ and standard deviation $\sigma = 10$.  The probability of
+interest is
+\begin{align*}
+  P(X > 30)
+    &= P\left(\frac{X - \mu}{\sigma} > \frac{30 - \mu}{\sigma}\right) \\
+    &= P\left(Z > \frac{30 - 16}{10}\right) \\
+    &= P(Z > 1.4) \\
+    &= 0.08076.
+\end{align*}
+\end{solution}
+
+%  \item Find that probability that your one-year return will be negative.
+
+\end{problem}
+
+
+
+\begin{problem}{}
+
+If the population standard deviation is $2.5$ and we take a random sample of
+size $81$, what is $\sd (\bar X)$?   Note: this quantity is known as
+the ``standard error of the mean.'' 
+
+\begin{solution}
+\[
+  \sd(\bar X) = \frac{\sigma}{\sqrt{n}} = \frac{2.3}{\sqrt{64}} = 0.2875.
+\]
+
+\end{solution}
+\end{problem}
+
+
+\begin{problem}{}
+
+Suppose that daily returns on a portfolio are independent, with a mean of
+$0.03\%$ and a standard deviation of $1\%$.  Approximately what is the
+probability that the average daily return over the next 100 days will be
+between $0.2\%$ and $0.3\%$?
+
+\begin{solution}
+
+Let $\bar X$ denote the average return over the next 100 days, in percent.
+Then, by the central limit theorem, $\bar X$ is approximately normal with mean
+and standard deviation
+\begin{align*}
+  \mu_{\bar X} &= \mu = 0.03, \\
+  \sigma_{\bar X} &= \frac{\sigma}{\sqrt{n}} = \frac{1}{\sqrt{100}} = 0.1.
+\end{align*}
+The probability of interest is
+\begin{align*}
+  P(0.2 < X < 0.3)
+    &= P\left(\frac{0.2 - 0.03}{0.1}
+          < \frac{X - \mu_{\bar X}}{\sigma_{\bar X}}
+          < \frac{0.3 - 0.03}{0.1}\right) \\
+    &= P(1.7 < Z < 2.7) \\
+    &= 0.996533 - 0.95543 \\
+    &= 0.041103.
+\end{align*}
+\end{solution}
+
+\end{problem}
+
+
+
+\begin{problem}{}
+
+If we throw $n$ dice where $n$ is large, why can we think of the distribution
+of the sum as being approximately normal?
+
+\begin{solution}
+The sum is equal to $n \bar X$, where $\bar X$ is the average value of the $n$
+rules.  By the central limit theorem, $\bar X$ is approximately normal if $n$
+is large.  Further, if we scale a normal random variable by a constant ($n$),
+then we get a normal random variable.  Thus, $n \bar X$, the sum, is
+approximately normal.
+\end{solution}
+
+\end{problem}
+
+
+
+\begin{problem}{}
+
+Suppose that an auto factory has $8$ assembly lines, operating
+independently.  For each assembly line, the number of autos produced per day
+has a normal distribution with mean of $20$ and a standard deviation of $4$. 
+Approximately what is the
+probability that $120$ or fewer autos will be produced tomorrow?
+
+\begin{solution}
+Let $\bar X$ be the average number produced by the $10$ assembly lines.  Then,
+by the central limit theorem, $\bar X$ is approximately normal with mean and
+standard deviation
+\begin{align*}
+  \mu_{\bar X} &= 20, \\
+  \sigma_{\bar X} &= \frac{3}{\sqrt{10}} = 0.9487.
+\end{align*}
+To produce a total of $180$ or fewer autos, the $10$ factories must produce an
+average of $180/10 = 18$ or fewer.  The probability of interest is
+\begin{align*}
+  P(\bar X < 18)
+    &= P\left(\frac{\bar X - \mu_{\bar X}}{\sigma_{\bar X}}
+          < \frac{18 - 20}{0.9487}\right) \\
+    &\approx P(Z < -2.1) \\
+    &= 0.01786.
+\end{align*}
+\end{solution}
+
+\end{problem}
+
+\end{document}
+
+

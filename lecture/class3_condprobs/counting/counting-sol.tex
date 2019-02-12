@@ -1,0 +1,380 @@
+\documentclass[answers,11pt]{exam}
+
+\makeatletter
+\newcommand{\course}[1]{\def\@course{#1}}
+\makeatother
+
+\makeatletter
+\pagestyle{headandfoot}
+\firstpageheader{}{\large \textbf{\@title \ifprintanswers ~-- Solutions \else \fi} \\ \@course}{}
+\makeatother
+
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subfig}
+
+\DeclareGraphicsExtensions{.png,.pdf}
+
+
+\DeclareMathOperator*{\Prob}{P}
+\renewcommand{\Pr}{\Prob}
+\DeclareMathOperator*{\E}{E}
+\DeclareMathOperator*{\var}{var}
+\DeclareMathOperator*{\sd}{sd}
+
+
+\title{Counting}
+\course{COR1-GB.1305 -- Statistics and Data Analysis}
+
+\begin{document}
+
+\begin{questions}
+
+
+\fullwidth{\section*{The Multiplication Rule}}
+
+\question A man has 4 pair of pants, 6 shirts, 8 pairs of socks, and 3 pairs of
+shoes.  Ignoring the fact that some of the combinations may look ridiculous,
+how many ways can he get dressed?
+
+\begin{solution}
+Using the multiplication rule, there are
+\[
+  4 \cdot 6 \cdot 8 \cdot 3 = 576
+\]
+ways for the man to get dressed.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question A restaurant offers soup or salad to start, and has 11 entr\'ees to choose
+from, each of which is served with rice, baked potato, or zucchini.   How many
+meals can you have if you can choose to eat one of their 4 desserts or have no
+desert?
+
+\begin{solution}
+\[
+  2 \cdot 11 \cdot 3 \cdot 5 = 330
+\]
+
+Note that there are $5$ choices for the final course (4 desserts or no
+dessert).
+
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question How many answer sheets are possible for a true/false test with 15
+questions?
+
+\begin{solution}
+\[
+  2^{15} = 32768
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+
+\fullwidth{\section*{Permutations}}
+
+
+\question How many ways can 5 people stand in line?
+
+\begin{solution}
+\[
+  5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 5! = 120
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question How many different batting orders are possible for 9 baseball players?
+
+\begin{solution}
+\[
+  9! = 362880
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question How many ways can 8 books be put on a shelf?
+
+\begin{solution}
+\[
+  8! = 40320
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\newpage
+
+\fullwidth{\section*{More Permutations}}
+
+\question Twelve people belong to a club.  How many ways can they pick a
+president, vice-president, secretary, and treasurer?
+
+\begin{solution}
+\[
+  12 \cdot 11 \cdot 10 \cdot 9 = \frac{12!}{8!} = 11880
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question In a horse race the first three finishers are said to win, place, and
+show.  How many finishes are possible for a race with 11 horses?
+
+\begin{solution}
+\[
+  11 \cdot 10 \cdot 9 = \frac{11!}{8!} = 990
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question Five different awards are to be given to a class of 30 students.  How
+many ways can this be done if (a) each student can receive any number of
+awards, (b) each sutent can receive at most one award?
+
+\begin{solution}
+(a) $30^5 = 24300000$ \\
+(b) $30!/(25!) = 30 \cdot 29 \cdot 28 \cdot 27 \cdot 26 = 17100720$
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+
+\fullwidth{\section*{Combinations}}
+
+\question A club has 23 members.  
+
+
+\begin{parts}
+
+\part How many ways can they pick 2 people to be on a
+committee to plan a party?
+
+\begin{solution}
+\[
+  \binom{23}{2} = \frac{23 \cdot 22}{2 \cdot 1} = 253.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part How many ways can they pick 4 people to be on a
+committee to plan a party?
+
+\begin{solution}
+\[
+  \binom{23}{4} = \frac{23 \cdot 22 \cdot 21 \cdot 20}{4 \cdot 3 \cdot 2 \cdot 1} = 8855.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+\question A restaurant offers 15 possible toppings for its pizza.  How many
+different pizzas with 3 toppings can be ordered?
+
+\begin{solution}
+\[
+  \binom{15}{3} = \frac{15 \cdot 14 \cdot 13}{3 \cdot 2 \cdot 1} = 455
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question We are going to pick 5 cards out of a deck of 52.  In how many ways
+can this be done?
+
+\begin{solution}
+\[
+  \binom{52}{5}
+  = \frac{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48}{5 \cdot 4 \cdot 3 \cdot 2 \cdot 1}
+  = 2598960.
+\]
+\end{solution}
+
+
+\vspace{\stretch{1}}
+
+\newpage
+
+\fullwidth{\section*{Advanced Problems}}
+
+%\question Suppose we pick 4 balls out of an urn with 12 red balls and 8 black
+%balls.  What is the probability of $B = \text{``We get two balls of each
+%color''}$?
+%
+%\begin{solution}
+%The number of ways to pick 4 balls out of 20 is $\binom{20}{4}$.
+%
+%We use the multiplication rule as to count the number of ways to pick two
+%balls of each color.  The sequence of experiments is (1) pick two red balls
+%from the $12$, then (2) pick two black balls from the $8$.  There are
+%$\binom{12}{2}$ ways to perform the first experiment, and $\binom{8}{2}$ to
+%perform the second experiment, so there are $\binom{12}{2} \binom{8}{2}$
+%total.
+%
+%Finally,
+%\begin{align*}
+%  P(B) &=
+%    \frac{\#\{\text{picks with two balls of each color}\}}
+%         {\#\{\text{picks with four balls\}}} \\
+%       &= \frac{\binom{12}{2} \binom{8}{2}}{\binom{20}{4}}
+%\end{align*}
+%\end{solution}
+%
+%\vspace{\stretch{3}}
+%
+%\ifprintanswers\else\newpage\fi
+
+
+\question \textbf{New York state lotto.}  You pick six of the numbers 1 through
+54, and then in a televised drawing six of the numbers are selected.  If all
+six of your numbers are selected then you win a share of the first place
+prize.  If five or four of your numbers are selected you win a share of the
+second or third prize.
+
+\begin{parts}
+\part How many ways are there to select 6 numbers for the lotto ticket?
+
+\begin{solution}
+\[
+  \binom{54}{6}
+  = \frac{54 \cdot 53 \cdot 52 \cdot 51 \cdot 50 \cdot 49}
+         {6 \cdot 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1}
+  = 25827165
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part How many ways are there to select a first prize number?
+
+\begin{solution}
+\[
+  1
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part What is the probability of selecting a first prize number?
+
+
+\begin{solution}
+\begin{align*}
+   P(\text{first prize})
+     &= \frac{\#\{\text{lotto tickets that match all six numbers}\}}
+         {\#\{\text{lotto tickets\}}} \\
+     &= \frac{1}{\binom{54}{6}} \\
+     &= 1 / 25827165 \\
+     &= 0.000004\%
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+%How many lotto tickets have five matches and one mismatch from our pick?
+%Consider the following sequence of experiments for enumerating all such
+%possibilities: (1) pick $5$ numbers out of our six to match; (2) pick $1$
+%number to mismatch.  There are $\binom{6}{5}$ possible outcomes for experiment
+%(1), and $\binom{48}{1}$ possible outcomes for experiment (2).  (Note that $48
+%= 54 - 6$; there are $48$ numbers in the range 1--54 which aren't on our lotto
+%ticket.)  Thus,
+%\begin{align*}
+%   P(\text{second prize})
+%    &= \frac{\#\{\text{lotto tickets that match exactly five numbers}\}}
+%         {\#\{\text{lotto tickets\}}} \\
+%     &= \frac{\binom{6}{5}\binom{48}{1}}{\binom{54}{6}}.
+%\end{align*}
+%
+%The computation for third prize is similar to the computation for second
+%prize:
+%
+%\begin{align*}
+%   P(\text{third prize})
+%    &= \frac{\#\{\text{lotto tickets that match exactly four numbers}\}}
+%         {\#\{\text{lotto tickets\}}} \\
+%     &= \frac{\binom{6}{4}\binom{48}{2}}{\binom{54}{6}}.
+%\end{align*}
+
+
+\vspace{\stretch{1}}
+
+
+\question \textbf{Quality assurance.}  Suppose we have a batch of $100$ light bulbs,
+which contains $5$ defective bulbs.  If we pick $10$ for testing, what is the
+probability that no bulbs in the sample are defective?  We can answer this
+question in three steps.
+
+\begin{parts}
+
+\part How many ways are there of picking $10$ bulbs for testing out of $100$?
+
+\begin{solution}
+\[
+  \binom{100}{10}
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part How many ways are there of picking $10$ non-defective bulbs?
+
+\begin{solution}
+\[
+  \binom{95}{10}
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part What is the probability that there are no defective bulbs in your sample
+of $10$?
+
+\begin{solution}
+\begin{align*}
+  P(\text{no defects in sample})
+    &= \frac{\binom{95}{10}}{\binom{100}{10}} \\
+    &= 58\%.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+%\ifprintanswers\else\newpage\fi
+
+\end{questions}
+
+\end{document}
+

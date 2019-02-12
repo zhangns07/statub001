@@ -1,0 +1,181 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%This is a science homework template. Modify the preamble to suit your needs. 
+%The junk text is   there for you to immediately see how the headers/footers look at first 
+%typesetting.
+
+
+\documentclass[11pt]{exam}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm}
+%geometry (sets margin) and other useful packages
+\usepackage{alltt}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{fullpage}
+\usepackage{graphicx,ctable,booktabs}
+\usepackage{hyperref}
+\newcommand{\h}{\widehat}
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent{Problem }
+       }
+       }
+       {%\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+       \begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+
+
+\DeclareMathOperator*{\sd}{sd}
+
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\lhead{Problem \thesection}
+%\chead{} 
+%\rhead{\thepage} 
+%\lfoot{\small\scshape course name}
+%\cfoot{} 
+%\rfoot{\footnotesize HW \#1}
+%\renewcommand{\headrulewidth}{.3pt}
+%\renewcommand{\footrulewidth}{.3pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%Contents of problem set
+%    
+\begin{document}
+
+\begin{center}
+  \large
+  \textbf{Homework \#5 -- Due Tuesday, Aug.~7} \\
+  STAT-UB.0001 -- Statistics for Business Control \\
+\end{center}
+
+
+\thispagestyle{empty}
+
+\begin{problem}{}
+
+For each of the following values of $\alpha$, and $n$, find $t_{\alpha/2,n-1}$. 
+Round the answer to two digits after the decimal point.
+
+\begin{enumerate}[(a)]
+
+\item $\alpha = 0.10$, $n = 25$.
+
+\item $\alpha = 0.02$, $n = 10$.
+
+\end{enumerate}
+
+\end{problem}
+
+\begin{problem}{}
+
+Consider the time it takes for a call center to answer its calls. A random
+sample of $7$ calls revealed a sample mean time of $191$ seconds and a sample
+standard deviation of $11.4$ seconds.
+
+\begin{enumerate}[(a)]
+
+\item What is the sample?
+
+\item What is the population?
+
+\item Explain what the population mean represents in this problem.
+
+\item Construct a 95\% confidence interval for the population mean.
+
+\item Construct a 99\% confidence interval for the population mean.
+
+\item State any assumptions you needed to do this problem. Do you think that
+the assumptions are reasonable? Why or why not?
+
+\end{enumerate}
+
+\end{problem}
+
+\begin{problem}{}
+
+Consider (again) the time it takes for a call center to answer its calls. Assume the 
+time to answer a call is normally distributed.  
+The call center claims that the mean time to answer a call is $3$ minutes.  In a
+random sample of $7$ calls, the average time for the call center to answer was
+$191$ seconds, with a sample standard deviation of $11.4$ seconds.
+
+\begin{enumerate}[(a)]
+
+
+\item Provide the null and alternative hypotheses for testing the call
+center's claim.
+
+\item Compute the test statistic.
+
+\item Compute the $p$-value.
+
+\item Test the call center's claim, at the 1\% level of significance.
+
+\end{enumerate}
+
+\end{problem}
+
+
+
+\begin{problem}{}
+    You would like to estimate the proportion of Stern students who participates in course faculty evaluations (CFEs). 
+    If you want to construct a 95\% confidence interval for this proportion, how many students should you survey 
+    to guarantee that the width of your confidence interval will be less than 0.05?
+    \textit{Hint: use the fact that $\h p (1-\h p) \leq \frac{1}{4}$, for any $\h p$ taking values between $[0,1]$.}
+\end{problem}
+
+\begin{problem}{}
+
+Consider the \texttt{HeightWeight.csv} file containing data on 200 records of human heights and weights of 18 years
+old children. Here, we focus on the the Weight (in lb) column. Use Minitab to complete the following questions.
+
+\begin{enumerate}[(a)]
+
+\item \label{part:weight-minitab} Use \textit{Stat $\Rightarrow$ Basic Statistics $\Rightarrow$ 1-Sample
+t}, and choose \texttt{Weight} to create a
+95\% confidence interval for the population mean.
+
+
+\item Use the Minitab output (\texttt{N}, \texttt{Mean}, \texttt{StDev}) to check the calculation of the confidence
+interval in (\ref{part:weight-minitab}).  Also verify the calculation
+of \texttt{SE Mean}, the (estimated) standard deviation for the sample mean.
+
+\item \label{part:weight-confint-99} Get a 99\% confidence interval for the population mean, proceeding as in
+(\ref{part:weight-minitab}) but adding \textit{Options $\Rightarrow$
+Confidence Level:} 99.0.
+
+\item  According to Wikipedia, the average weight for adults is 136.7 lb. 
+    Use Minitab to get the $p$-value corresponding to the null hypothesis that the average weight for the 18 years old children is the same as
+    the average weight of the adults. Interpret the $p$-value.  Proceed as in (\ref{part:weight-minitab}) but select \textit{Perform hypothesis test}.
+\end{enumerate}
+
+\end{problem}
+
+
+
+\end{document}
+
+

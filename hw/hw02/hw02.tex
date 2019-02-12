@@ -1,0 +1,141 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%This is a science homework template. Modify the preamble to suit your needs. 
+%The junk text is   there for you to immediately see how the headers/footers look at first 
+%typesetting.
+
+
+\documentclass[11pt]{article}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm}
+%geometry (sets margin) and other useful packages
+\usepackage{alltt}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{fullpage}
+\usepackage{graphicx,ctable,booktabs}
+\usepackage{hyperref}
+
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent{Problem }
+       }
+       }
+       {%\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+       \begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+
+
+\DeclareMathOperator*{\sd}{sd}
+
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\lhead{Problem \thesection}
+%\chead{} 
+%\rhead{\thepage} 
+%\lfoot{\small\scshape course name}
+%\cfoot{} 
+%\rfoot{\footnotesize HW \#1}
+%\renewcommand{\headrulewidth}{.3pt}
+%\renewcommand{\footrulewidth}{.3pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%Contents of problem set
+%    
+\begin{document}
+
+\begin{center}
+  \large
+  \textbf{Homework \#2 -- Due Thursday, Jul.~19} \\
+  STAT-UB.0001 -- Statistics for Business Control \\
+\end{center}
+
+
+\thispagestyle{empty}
+
+
+
+\begin{problem}{}
+The U.S. Census Bureau reports the percentage of mothers in the workforce who have infant children.
+The following table gives a breakdown of the martial status and working status of the 1.8 million mothers with infant children in the year 2010.
+(The numbers in the table are in thousands.) A mother with infant children is to be selected randomly.
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline
+ & Working & Not Working \\ \hline
+Married and living with husband & 1174 & 89\\ \hline
+All other arrangements & 416 & 121  \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Let A be the event ``Mom with infant works'', and let B be the event ``Mom with infant is married and living with husband''.
+\begin{enumerate}[(a)]
+\item Find $P(A)$, $P(B)$, and $P(A\mid B)$.
+\item Are the events A and B independent?
+\item Find $P(B\mid A)$ and $P(B \mid A^c)$. Are they equal?
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{}
+The local area network (LAN) at Stern is temporarily shut down. Previous shutdowns have been due to hardware failure, software failure, or power failure. 
+Maintenance engineers have determined that the probabilities of hardware, software, and power failures are 0.01, 0.05 and 0.02, respectively.
+They have also determined that if the system experiences hardware problems, LAN shuts down 73\% of the time. 
+Similarly, if software problems occur, LAN shuts down 12\% of the time; and if power problems occur, LAN shuts down 88\% of the time.
+\begin{enumerate}[(a)]
+\item Express the information given in the problem statement as probabilities or conditional probabilities. Example: P(Hardware)=0.01.
+\item What is the probability that LAN will shutdown (in the future)?
+\item Given the fact that LAN is shut down, what is the probability that the current shutdown is due to hardware failure? Software failure? Power failure?
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{}
+\begin{enumerate}[(a)]
+\item There are 3 male and 3 female students sitting in a row, and they chose their seats randomly. What is the probably of the event "No two males sit together and no two females sit together"?
+(Hint: The gender of the seated students can only be FMFMFM or MFMFMF.)
+\item Compute the probability of randomly drawing five cards from a deck, and getting two Aces. (Hint: A deck has 52 cards, and 4 of them are Aces.) 
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}{}
+Consider the probability distribution function for the random variable $X$ shown here:
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|} \hline
+x & 10& 20 &30 &40 &50 &60 \\ \hline
+$p(x)$ & 0.05&0.20 &0.30 & 0.25&0.10 &0.10 \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[(a)]
+\item Find $\mu$, $\sigma^2$, and $\sigma$. Write down the formulas showing how do you get these numbers.
+\item Use empirical rules with $\mu$ and $\sigma$ to find the approximate 95\% interval of the probability.
+\item What is the probability that $X$ will fall within the interval you just computed in (b)? (Hint: Use the PDF table.)
+\end{enumerate}
+\end{problem}
+
+
+\end{document}
+
+

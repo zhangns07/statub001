@@ -1,0 +1,182 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%This is a science homework template. Modify the preamble to suit your needs. 
+%The junk text is   there for you to immediately see how the headers/footers look at first 
+%typesetting.
+
+
+\documentclass[11pt]{article}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm}
+%geometry (sets margin) and other useful packages
+\usepackage{alltt}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{fullpage}
+\usepackage{graphicx,ctable,booktabs}
+\usepackage{hyperref}
+\newcommand{\ignore}[1]{}
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent{Problem }
+       }
+       }
+       {%\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+       \begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+
+
+\DeclareMathOperator*{\sd}{sd}
+
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\lhead{Problem \thesection}
+%\chead{} 
+%\rhead{\thepage} 
+%\lfoot{\small\scshape course name}
+%\cfoot{} 
+%\rfoot{\footnotesize HW \#1}
+%\renewcommand{\headrulewidth}{.3pt}
+%\renewcommand{\footrulewidth}{.3pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%Contents of problem set
+%    
+\begin{document}
+
+\begin{center}
+  \large
+  \textbf{Homework \#1 -- Due Thursday, Jul.~12, before class} \\
+  STAT-UB.0001 -- Statistics for Business Control \\
+\end{center}
+\thispagestyle{empty}
+
+\noindent   Some of the homework assignments will involve data files.  All data
+files will be available on NYU Classes under the ``Datasets'' section.  You are
+permitted to work in teams, but each student must independently write up their
+own solutions (no direct copying).
+
+Electronic submissions are not accepted, but you can write your solutions on a laptop and print it out. Print out and turn in your Minitab plots. See the ``Minitab Tips'' on NYU Classes  for tips on opening files and printing or saving plots.
+
+\begin{problem}{}
+Much of our understanding of prehistoric peoples comes from caves, such as cave paintings, evidence of fire pits, etc.  made nearly 40,000 years ago. Based on these, people tend to believe that most of prehistoric peoples lived in caves for most of their lives. Do you see any problem in this?
+\end{problem}{}
+
+
+
+\begin{problem}{}
+Consider these values:
+\[
+  21 \hspace{1em}
+  22 \hspace{1em}
+  18 \hspace{1em}
+  25 \hspace{1em}
+  27 \hspace{1em}
+  9 \hspace{1em}
+  21 \hspace{1em}
+  34 \hspace{1em}
+  20 \hspace{1em}
+  16 
+\]
+Find the mean, median, mode, and standard deviation for these. You need to compute these values by hand. This is for you to get familiar with those formulas.
+\end{problem}
+
+\ignore{
+\begin{problem}{}
+The file \texttt{BestpaidActorsIncome.csv} contains the annual income for the Forbes Top 10 Best-paid Actors Worldwide in 2017.
+
+Use
+%
+\textit{Stat $\Rightarrow$
+        Basic Statistics $\Rightarrow$
+        Display Descriptive Statistics}
+%
+to compute the mean, median and interquartile range, for the incomes.  You will need to obtain the inter-quartile range by hand as the difference between the third quartile ($Q_3$, the 75th percentile) and the first quartile ($Q_1$,the 25th percentile).  Why do you think that the mean is greater than the median? To help answer this, look back at the data set, and also create a
+histogram, using \textit{Graph $\Rightarrow$ Histogram $\Rightarrow$ Simple}.
+
+Next, remove the two largest observations, Mark Wahlberg and Dwayne Johnson by replacing their incomes in the Minitab spreadsheet by \texttt{*}
+(a missing value). Recompute the mean, median and interquartile range for the modified data set. Compare with the corresponding values for the full data set. What changed and what stayed essentially the same? Why?
+\end{problem}
+}
+
+\begin{problem}{}
+The file \texttt{HeightWeight.csv} contains data on 200  records of human heights and weights of 18 years old children.   Here, we focus on the the \textit{Weight} (in Pounds) column.
+\begin{enumerate}
+
+\item Use
+%
+\textit{Stat $\Rightarrow$
+        Basic Statistics $\Rightarrow$
+        Display Descriptive Statistics}
+%
+to compute the mean, median and interquartile range, for the \textit{Weight}.  You will need to obtain the inter-quartile range by hand as the difference between the third quartile ($Q_3$, the 75th percentile) and the first quartile ($Q_1$,the 25th percentile). 
+
+\item Make a histogram of \textit{Weight}.  Does the data seem to have a reasonably bell-shaped distribution?  
+
+\item Make a boxplot of \textit{Weight}.  Do you see any outliers?
+
+\item Use empirical rules to complete the statements:
+\begin{itemize}
+\item For approximately 68\% individuals, the weight is between $[?, ?]$ 
+\item For approximately 95\% individuals, the weight is between $[?, ?]$ 
+\item For approximately 99.7\% individuals, the weight is between $[?, ?]$ 
+
+\end{itemize}
+
+\item (Optional) Look at the data. What are the true percentages in those intervals you just computed? Do they agree with the empirical rules (roughly)?
+
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{}
+A World Cup 2018 quarter-final between Sweden and England will happen on Jul 7. Suppose Sweden will score 0-3 goals with equal probability, and same for England. 
+\begin{enumerate}
+\item What is the sample space for this quarter-final?
+\item What is the probability that Sweden scores more goals than England? 
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{}
+Suppose among all soccer fans, 12\% support  Sweden, 23\% support  England, and 4\% support both. A soccer fan is to be selected at random.
+\begin{enumerate}
+
+\item What is the probability that the soccer fan supports either  Sweden or  England (or both)?
+
+\item What is the probability that the soccer fan supports neither team?
+
+\item What is the probability that the soccer fan supports  Sweden but not  England?
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{}
+
+Suppose the probability that a World Cup game will have more than 3 goals scored is 30\%, and the probability that the game will have more than 4 goals scored is 20\%.
+For a World Cup game that has more than 3 goals scored, what is the
+probability of it having more than 4 goals scored? 
+\end{problem}
+
+
+\end{document}
+
+

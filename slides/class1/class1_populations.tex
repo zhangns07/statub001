@@ -1,0 +1,218 @@
+\documentclass{beamer}
+
+\usetheme{default}
+\usecolortheme{rose}
+\usepackage{hyperref}
+\setbeamerfont{alerted text}{series=\itshape}
+\newcommand{\ignore}[1]{}
+
+\title{Populations and Samples}
+
+% A subtitle is optional and this may be deleted
+\subtitle{STAT-UB.0001 Statistics for Business Control}
+
+\author{Ningshan Zhang}
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[New York University] % (optional, but mostly needed)
+{
+  IOMS Department\\
+  nzhang@stern.nyu.edu
+}
+\date{July 3, 2018}
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+% Let's get started
+\begin{document}
+
+%-------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+% Section and subsections will appear in the presentation overview
+% and table of contents.
+\section{Course Logistics}
+
+%-------------------
+\begin{frame}{Course Logistics}
+See the syllabus on NYU Classes.
+\end{frame}
+
+\section{Introduction to Statistics}
+
+%-------------------
+\begin{frame}{Introduction to Statistics}
+The word 'Statistics' means
+\begin{itemize}
+\item In ordinary conversations, ``statistics'' means a collection of numbers. (Sport statistics, census statistics, etc. )
+\item In this course, ``statistics'' is an analytical discipline. 
+\end{itemize}
+\vspace{\stretch{0.5}}
+
+Wikipedia: Statistics is a branch of mathematics dealing with the collection, analysis, interpretation, presentation, and organization of data. 
+\vspace{\stretch{0.5}}
+
+``Statistics is using a \alert{sample} to make a statement about a \alert{population}.''
+\end{frame}
+
+%-------------------
+\begin{frame}{Introduction to Statistics}
+Why statistics? They say...\footnote{\url{https://youtu.be/d5urHxg_KSs}}
+\begin{itemize}
+\item Apply to various fields.
+\item Use math to solve problems.
+\item Not a major, but a set of skills.
+\item Open so many opportunities.
+\end{itemize}
+\end{frame}
+
+
+%-------------------
+\begin{frame}{Introduction to Statistics}
+Statistics is used in a variety of fields:
+\begin{itemize}
+\item Finance (Banking, Risk Management)
+\item Marketing (Targeted Advertising)
+\item Health (Drug Development)
+\item Politics (Election Polls) 
+\item Education (College Admissions Data, Teacher Evaluations) 
+\item Many more...
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Course Topics}
+\begin{itemize}
+\item Populations and Samples
+\item Descriptive Statistics
+\item Probability
+\begin{itemize}
+\item Basic Probability
+\item Conditional Probability
+\item Discrete Random Variables
+\item Continuous Random Variables
+\end{itemize}
+\item Inferential Statistics
+\begin{itemize}
+\item Sampling Distributions
+\item Confidence Intervals
+\item Hypothesis Tests
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------
+\begin{frame}{Populations vs Samples}
+``Statistics is using a \alert{sample} to make a statement about a \alert{population}.''
+\vspace{\stretch{0.5}}
+
+\begin{block}{ Population}
+ The set of items or individuals that we are interested in studying and drawing conclusions about.
+ \begin{itemize}
+ \item What we care about. The world. 
+ \end{itemize}
+\end{block}
+\begin{block}{ Sample}
+ A subset of items or individuals from the population, i.e. 
+ the data.
+  \begin{itemize}
+ \item What we have access to. A measurement of the world. 
+ \end{itemize}
+\end{block}
+\end{frame}
+
+%-------------------
+\begin{frame}{Populations vs Samples}
+\begin{block}{Example}
+You want to estimate the average amount of time that NYU undergraduates spend on social networking websites per day. % based on data collected from our class.
+\end{block}
+\begin{itemize}
+\item What is the population?
+\vspace{\stretch{0.5}}
+\item How to collect a sample?
+\end{itemize}
+\end{frame}
+
+
+%-------------------
+\begin{frame}{Representative}
+A representative sample is a sample whose properties accurately reflect those of the population. 
+\begin{itemize}
+\item Not possible to guarantee a representative sample in practice.
+\item If we know the population, take the sample to be equal to the population, which is representative.
+\item Otherwise, take an \alert{unbiased} sample.
+\end{itemize}
+\end{frame}
+
+
+%-------------------
+\begin{frame}{Unbiased sample}
+A sample is unbiased when every member of the population has an equal chance of being included in the sample.
+\begin{itemize}
+\item An unbiased sample is  not guaranteed to be representative, but  it will be representative on average.
+\item A large unbiased sample will be approximately representative. 
+\end{itemize}
+\vspace{\stretch{0.5}}
+
+If some member of the population is more likely to be in the sample, then the sample is biased. 
+
+\end{frame}
+
+
+%-------------------
+\begin{frame}{Sources of Bias}
+\begin{block}{Selection Bias}
+There is a systematic tendency for one group to be overrepresented or underrepresented. In other words, some type of individuals are more (or less) likely to be surveyed. 
+\end{block}
+
+Example: The Wall Street Journal wants to estimate its popularity amongst college students.  To do this, an employee surveys a random sample of Stern undergraduates.
+\vspace{\stretch{0.5}}
+
+Any problem?
+\end{frame}
+
+%-------------------
+\begin{frame}{Sources of Bias}
+\begin{block}{Nonresponse Bias}
+The researcher is unable to obtain data on all experimental units selected for the sample. In other words, some type of individuals are more (or less) likely to respond. 
+\end{block}
+Example: A university uses course faculty evaluations to assess the quality of its instructors.  There is no consequence if a student does not participate.
+
+\vspace{\stretch{0.5}}
+Any problem?
+\end{frame}
+
+%-------------------
+\begin{frame}{Sources of Bias}
+Example: During WWII, statistician Abraham Wald\footnote{Known for the Wald test.} was asked to help the British decide where to add armor to their bombers. Wald recommended adding more armor to the places where there was no damage! 
+
+\vspace{\stretch{0.5}}
+Why?
+\end{frame}
+
+
+%-------------------
+\begin{frame}{Summary}
+\begin{itemize}
+\item Populations and samples
+\item Representative sample
+\item Unbiased sample
+\item Sources of bias
+\end{itemize}
+
+\end{frame}
+
+
+
+\end{document}
+
+

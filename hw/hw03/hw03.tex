@@ -1,0 +1,154 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%This is a science homework template. Modify the preamble to suit your needs. 
+%The junk text is   there for you to immediately see how the headers/footers look at first 
+%typesetting.
+
+
+\documentclass[11pt]{article}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm}
+%geometry (sets margin) and other useful packages
+\usepackage{alltt}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{fullpage}
+\usepackage{graphicx,ctable,booktabs}
+\usepackage{hyperref}
+
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent{Problem }
+       }
+       }
+       {%\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+       \begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+
+
+\DeclareMathOperator*{\sd}{sd}
+
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\lhead{Problem \thesection}
+%\chead{} 
+%\rhead{\thepage} 
+%\lfoot{\small\scshape course name}
+%\cfoot{} 
+%\rfoot{\footnotesize HW \#1}
+%\renewcommand{\headrulewidth}{.3pt}
+%\renewcommand{\footrulewidth}{.3pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%Contents of problem set
+%    
+\begin{document}
+
+\begin{center}
+  \large
+  \textbf{Homework \#3 -- Due Thursday, Jul.~26} \\
+  STAT-UB.0001 -- Statistics for Business Control \\
+\end{center}
+
+
+\thispagestyle{empty}
+
+\begin{problem}{}
+
+A multiple-choice quiz has 20 questions. Each question has five possible
+answers, of which only one is correct.
+
+\begin{enumerate}[(a)]
+
+\item What is the probability that sheer guesswork will yield exactly 10 correct answers?
+
+\item What is the expected number of correct answers by sheer guesswork?
+
+\item Suppose 5 points are awarded for a correctly answered question. How many
+points should be deducted for an incorrectly answered question, so that for a
+student guessing randomly, the expected score on a question is zero? (Most
+standardized tests use this method to set penalties for guessing.)
+
+\item If a student is able to correctly eliminate one option as a possible
+correct answer but is still guessing randomly, what happens to his/her
+expected score for that question? Use your answer to (c) as the number of
+points being deducted for an incorrect answer.
+
+\end{enumerate}
+
+\end{problem}
+
+\begin{problem}{}
+
+A Motel has 16 bedrooms. From past experience, the manager knows that 20\% of
+the people who make room reservations don't show up. The manager accepts 20
+reservations. If a customer with a reservation shows up and the motel has run
+out of rooms, it is the motel's policy to pay \$100 as compensation to the
+customer. 
+\begin{enumerate}[(a)]
+\item What is the expected number of customers that will show up? 
+
+\item What is the expected value of the compensation that the motel must pay?
+
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}{}
+An automatic car wash takes exactly 5 minutes to wash a car. On average, 8 cars per hour arrive at the car wash.
+Suppose the number of cars arrive follows a Poisson distribution. Now suppose 15 minutes before closing time, 3 cars are in line.
+If the car wash is in continuous use until closing time, what is the chance that anyone will be in line at closing time?
+\end{problem}
+
+\begin{problem}{}
+ 
+Suppose that you throw two dice. Each die can come up as $1$, $2$, $3$, $4$,
+$5$ or $6$, and the results from the two dice are independent of each other.
+We are interested in the random variable $X$, the sum of the two numbers that
+land face up. The possible values for $X$ are $2, 3, \dotsc, 12$. 
+ 
+\begin{enumerate}[(a)]
+
+\item Make a table giving the probability distribution of $X$.  Explain
+briefly how you did the calculations. 
+
+\item Show that $E(X) = 7$ and $\mathrm{var}(X) = 210/36 = 5.833$
+
+\item The distribution of $X$ would look somewhat bell-shaped. (This is not a coincidence. The more
+dice you toss, the closer the distribution of the sum comes to a normal
+distribution. More on this later in the course.) For now, let's see how well
+the empirical rule works. Show that the probability that $X$ is within 
+$E(X) \pm \mathrm{sd}(X)$ is $24/36=0.667$.  
+Show that the probability that $X$ is within $E(X) \pm 2\mathrm{sd}(X)$ is $34/36=0.944$. 
+
+\end{enumerate}
+
+\end{problem}
+
+
+
+
+\end{document}
+
+

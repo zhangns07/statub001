@@ -1,0 +1,1044 @@
+\documentclass[answers,11pt]{exam}
+
+\makeatletter
+\newcommand{\course}[1]{\def\@course{#1}}
+\makeatother
+
+\makeatletter
+\pagestyle{headandfoot}
+\firstpageheader{}{\large \textbf{\@title \ifprintanswers ~-- Solutions \else \fi} \\ \@course}{}
+\makeatother
+
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subfig}
+
+\DeclareGraphicsExtensions{.png,.pdf}
+
+
+\DeclareMathOperator*{\Prob}{P}
+\renewcommand{\Pr}{\Prob}
+\DeclareMathOperator*{\E}{E}
+\DeclareMathOperator*{\var}{var}
+\DeclareMathOperator*{\sd}{sd}
+
+
+\title{Probability}
+\course{STAT-UB.0001 -- Statistics for Business Control}
+
+\begin{document}
+
+\begin{questions}
+
+
+\fullwidth{\section*{Sample Points and Sample Spaces}}
+
+\question In the following two experiments, what are the sample points and the
+sample space?
+
+\begin{parts}
+\part You flip a coin.
+
+\begin{solution}
+The sample points are $H$, ``the outcome is heads,'' and $T$, ``the outcome is
+tails.'' The sample space is the set of all sample points: $\Omega = \{ H, T \}$.
+\end{solution}
+\vspace{\stretch{0.5}}
+
+
+\part You roll a 6-sided die.
+
+\begin{solution}
+The sample points are the possible outcomes of the die: 1, 2, 3, 4, 5, 6.  The
+sample space is the set of all sample points: $\Omega = \{ 1, 2, 3, 4, 5, 6 \}$.
+\end{solution}
+
+\vspace{\stretch{0.5}}
+
+\end{parts}
+
+
+\question Suppose that a customer visits a restaurant and leaves a review on
+Yelp with 1--5 stars.  What are the sample points and the sample space for the
+customer's star rating?
+
+\begin{solution}
+The sample points are the possible star ratings: 1, 2, 3, 4, 5.  The sample
+space is the set of all sample points: $\Omega = \{ 1, 2, 3, 4, 5 \}$.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question Suppose that two customers visit a restaurant, and that they both
+leave Yelp reviews with 1--5 stars each.
+What are the sample points and the sample space for the pair of star ratings?
+
+\begin{solution}
+Each sample point can be represented by an ordered pair $(i,j)$, where $i$ is
+the first customer's star rating, and $j$ is second customer's star rating.  The
+sample points are the elements of the following table.
+\begin{center}
+\begin{tabular}{c|c|c|c|c|}
+\multicolumn{1}{c}{} &
+\multicolumn{1}{c}{1} &
+\multicolumn{1}{c}{2} &
+\multicolumn{1}{c}{$\cdots$} &
+\multicolumn{1}{c}{5} \\
+\cline{2-5}
+1 & (1,1) & (1,2) & $\cdots$ & (1,5) \\
+\cline{2-5}
+2 & (2,1) & (2,2) & $\cdots$ & (2,5) \\
+\cline{2-5}
+$\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ \\
+\cline{2-5}
+5 & (5,1) & (5,2) & $\cdots$ & (5,5) \\
+\cline{2-5}
+\end{tabular}
+\end{center}
+The sample space is the set of all 25 sample points: $\Omega = \{ (1,1), (1,2),
+\dotsc, (5,5) \}$.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\newpage
+\question Suppose you randomly pick a respondent from the class survey, then
+record their undergraduate major and gender.  What are the sample points and the sample space?
+Assume that major is either ``Business,'' ``Humanities/Social Science,'' or
+``Science/Engineering.''
+
+\begin{solution}
+Each sample point is a gender-major pair.  The sample space is the set of all
+possible gender-major pairs: $\Omega = \{ (\text{Bus.}, \text{Female}),$
+$(\text{Bus.}, \text{Male}),$
+$(\text{Hum./Soc.~Sci.}, \text{Female}),$
+$(\text{Hum./Soc.~Sci.}, \text{Male}),$
+$(\text{Sci./Eng.}, \text{Female}),$
+$(\text{Sci./Eng.}, \text{Male}) \}$.
+Note that the sample space is all \emph{possible} gender-major pairs, not all
+\emph{observed} gender-major pairs.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\fullwidth{\section*{Events}}
+
+
+\question \label{ques:odd-yelp} Suppose that a customer leaves a Yelp
+rating (1--5 stars) for a restaurant.  Describe the event ``the rating is odd
+(not even).''
+
+\begin{solution}
+\[
+  O = \{ 1, 3, 5 \}.
+\]
+\end{solution}
+
+
+
+\question \label{ques:survey-male}
+
+Suppose you randomly pick a respondent from the class survey, then record
+their undergraduate major and gender.  Assume that undergraduate major is
+listed as ``Business'', ``Hum./Soc.~Sci.'', or ``Sci./Eng.'', and that gender
+is listed as ``Male'' or ''Female''.
+
+
+\begin{parts}
+
+\part List the sample points in the event ``the major is Business.''
+
+\begin{solution}
+\(
+  \text{Business} = \{ (\text{Business}, \text{Female}), (\text{Business}, \text{Male}) \}.
+\)
+\end{solution}
+
+\vspace{\stretch{0.5}}
+
+
+\part List the sample points in the event ``the gender is Male.''
+
+\begin{solution}
+\(
+  \text{Male} = \big\{
+    \big(\text{Business}, \text{Male}\big),
+    \big(\text{Hum./Soc.~Sci.}, \text{Male}\big),
+    \big(\text{Sci./Eng.}, \text{Male}\big)
+  \big\}.
+\)
+\end{solution}
+
+\vspace{\stretch{0.5}}
+
+\end{parts}
+
+\newpage
+
+
+
+\fullwidth{\section*{Probability}}
+
+
+\question Suppose you randomly pick a respondent from the class survey and
+record their undergraduate major and gender.
+
+\begin{parts}
+
+\part Use the following table of recorded survey
+response frequencies to compute the probabilities of the sample points.
+
+\vspace{\baselineskip}
+
+\begin{center}
+\bgroup
+%\def\arraystretch{1.5}
+\begin{tabular}{l@{\extracolsep{2em}}rrr}
+\toprule
+& \multicolumn{2}{c}{Gender} & \\
+\cmidrule(r){2-3}
+Undergrad Major & Female & Male & Total \\
+\midrule
+Business       &  9 &  6 & 15 \\
+Hum./Soc.~Sci. & 10 & 12 & 22 \\
+Sci./Eng.      &  2 &  8 & 10 \\
+\addlinespace
+\quad Total    & 21 & 26 & 47 \\
+\bottomrule
+\end{tabular}
+\egroup
+\end{center}
+
+\vspace{\baselineskip}
+
+\begin{solution}
+To compute the probabilities for the 6 sample points corresponding to the cells
+of the table, we take the recorded frequency and divide by the total number of
+survey respondents.  We have
+\begin{align*}
+  \Pr\big(\text{Bus.},       \text{Female}\big) &= \frac{ 9}{47} \approx .19, \\
+  \Pr\big(\text{Bus.},       \text{Male}  \big) &= \frac{ 6}{47} \approx .13, \\
+  \Pr\big(\text{Hum./Soc.~Sci.}, \text{Female}\big) &= \frac{10}{47} \approx .21, \\
+  \Pr\big(\text{Hum./Soc.~Sci.}, \text{Male}  \big) &= \frac{12}{47} \approx .26, \\
+  \Pr\big(\text{Sci./Eng.},         \text{Female}\big) &= \frac{ 2}{47} \approx .04, \\
+  \Pr\big(\text{Sci./Eng.},         \text{Male}  \big) &= \frac{ 8}{47} \approx .17.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part Find the probability that the undergraduate major is Business.
+
+\begin{solution}
+\begin{align*}
+\Pr(\text{Business}) &= \tfrac{9}{47} + \tfrac{6}{47} \\
+       &= \tfrac{15}{47} \\
+       &\approx 32\%.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part Find the probability that the gender is Male.
+
+\begin{solution}
+\begin{align*}
+\Pr(\text{Male}) &= \tfrac{6}{47} + \tfrac{12}{47} + \tfrac{8}{47} \\
+       &= \tfrac{26}{47} \\
+       &\approx 55\%.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part Find the probability the undergraduate major is
+Humanities/Social~Science.
+
+\begin{solution}
+\begin{align*}
+\Pr(\text{Hum./Soc.~Sci.}) &= \tfrac{10}{47} + \tfrac{12}{47} \\
+       &= \tfrac{22}{47} \\
+       &\approx 47\%.
+\end{align*}
+
+\end{solution}
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+
+\question Suppose that a customer's Yelp rating is random, and that the
+probabilities for the possible star ratings are
+\(
+  p_1 = 10\%,
+\)
+\(
+  p_2 = 30\%,
+\)
+\(
+  p_3 = 25\%,
+\)
+\(
+  p_4 = 20\%,
+\)
+\(
+  p_5 = 15\%.
+\)
+Find the probability that the rating is odd.
+
+\begin{solution}
+We add up the probabilities of the sample points in the event:
+\begin{align*}
+  \Pr(\{1, 3, 5\})
+    &= p_1 + p_3 + p_5 \\
+    &= 10\% + 25\% + 15\% \\
+    &= 50\%.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\newpage
+
+
+
+\fullwidth{\section*{Compound Events and the Additive Rule}}
+
+\question Suppose you pick a random survey respondent and record their
+undergraduate major and gender.  
+
+\begin{parts}
+
+\part List the sample points in the event
+``the major is Business or the gender is Male.''
+
+\begin{solution}
+Denote the event by $A$.  Then,
+\begin{multline*}
+  A = \{
+  (\text{Business}, \text{Female}), (\text{Business}, \text{Male}),
+            (\text{Hum./Soc.~Sci.}, \text{Male}),
+            (\text{Sci./Eng.}, \text{Male})
+      \}.
+\end{multline*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part Compute the probability of the event in part (a) by adding the
+probabilities of all of the sample points in the event.
+
+\begin{solution}
+\begin{align*}
+  \Pr(A)
+  &=
+  \tfrac{9}{47}
+  + \tfrac{6}{47}
+  + \tfrac{12}{47}
+  + \tfrac{8}{47} \\
+  &= \tfrac{35}{47} \\
+  &\approx 74\%.
+\end{align*}
+\end{solution}
+
+
+\vspace{\stretch{1}}
+
+\part Express the event ``the major is Business or the gender is Male'' as a
+union of two other events.
+
+\begin{solution}
+\begin{align*}
+  A &= \{ \text{major is Business or gender is Male} \} \\
+    &= \text{Business} \cup \text{Male}.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part Compute the probability of the event using the additive rule.
+
+\begin{solution}
+\begin{align*}
+  \Pr(A)
+  &= \Pr(\text{Business} \cup \text{Male}) \\
+  &= \Pr(\text{Business}) + \Pr(\text{Male})
+      - \Pr(\text{Business} \cap \text{Male}) \\
+  &= \tfrac{15}{47} + \tfrac{26}{47} - \tfrac{6}{47} \\
+  &= \tfrac{35}{47} \\
+  &\approx 74\%.
+\end{align*}
+\end{solution}
+\vspace{\stretch{1}}
+
+
+\end{parts}
+
+
+\newpage
+\question Suppose that two customers give ratings (1--5 stars) to the same restaurant
+on Yelp.  
+\label{ques:yelp-at-least-1}
+
+\begin{parts}
+  
+\part Express the event ``at least one customer gives a 1 star rating'' as a
+union of two other events.
+
+\begin{solution}
+\begin{multline*}
+  A = \{ \text{ the first customer gives a 1 star rating } \} \\
+      \cup \{ \text{ the second customer gives a 1 star rating } \}.
+\end{multline*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part Suppose that both customers randomly assign their ratings, giving equal
+probabilities to all possible star ratings.  In this case, all 25 sample
+points have equal probability.  Compute the probability of the event in part (a).
+
+\begin{solution}
+Using the additive rule,
+\begin{align*}
+\begin{split}
+  \Pr(A) &= \Pr(\text{1 from first customer})
+          + \Pr(\text{1 from second customer}) \\
+          &\quad- \Pr(\text{1 from the first customer \emph{and} 1 from second customer})
+\end{split} \\
+         &= \tfrac{1}{5} + \tfrac{1}{5} - \tfrac{1}{25} \\
+         &= \tfrac{9}{25} \\
+         &= 36\%.
+\end{align*}
+\end{solution}
+\vspace{\stretch{1}}
+
+\end{parts}
+
+\vspace{\stretch{0.5}}
+
+\question Suppose that two customers give ratings to the same restaurant on
+Yelp.  
+
+\begin{parts}
+  
+\part Express the event ``the average of their ratings is 3.5 or 4'' as a
+union of two other events. \\
+\textit{Hint: this is the same event as ``the sum of their ratings is 7 or
+8.''}
+
+
+\begin{solution}
+Define two events:
+\begin{align*}
+  S_7 &= \{ \text{ the sum of their ratings is 7 } \} \\
+      &= \{ (2,5), (3,4), (4,3), (5,2) \}, \\
+  S_8 &= \{ \text{ the sum of their ratings is 8 } \} \\
+      &= \{ (3,5), (4,4), (5,3)  \}.
+\end{align*}
+Then, the event we care about is $A = S_7 \cup S_8$.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part As in problem~\ref{ques:yelp-at-least-1}(b), 
+suppose that both customers randomly assign their ratings with equal
+probability for all possible star ratings, so that all 25 sample points
+have equal probability.  Compute the probability of the event in part (a).
+
+\begin{solution}
+Using the additive rule,
+\begin{align*}
+  \Pr(A)
+    &= \Pr(S_7 \cup S_8) \\
+    &= \Pr(S_7) + \Pr(S_8) - \Pr(S_7 \cap S_8).
+\end{align*}
+We note that the sum can't be 7 and 8 simultaneously, so $S_7$ and $S_8$ are
+mutually exclusive events, i.e.~$S_7 \cap S_8 = \emptyset$.  Thus,
+\begin{align*}
+  \Pr(A)
+    &= \Pr(S_7) + \Pr(S_8) \\
+    &= \tfrac{4}{25} + \tfrac{3}{25} \\
+    &= \tfrac{7}{25} \\
+    &= 28\%.
+\end{align*}
+\end{solution}
+\vspace{\stretch{1}}
+
+\end{parts}
+
+\vspace{\stretch{1}}
+
+
+\newpage
+
+\fullwidth{\section*{Complementary Events and the Complement Rule}}
+
+
+\question Suppose that 60\% of NYU undergraduates own iPhones.  If you pick a
+random NYU undegraduate, what is the probability that he or she will \emph{not} own
+an iPhone?
+
+\begin{solution}
+The sample space is the set of all students.  Let
+\[
+  A = \{ \text{ the randomly picked student owns an iPhone } \}.
+\]
+Then,
+\[
+  A^c = \{ \text{ the randomly picked student does not own an iPhone } \},
+\]
+so by the complement rule,
+\begin{align*}
+  \Pr(A^c) &= 1 - \Pr(A) \\
+           &= 1 - .60 \\
+           &= .40.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question Suppose you flip five coins.  What is the probability of getting at
+least one head?
+\\
+\textit{Hint: what is the complement of this event?}
+
+\begin{solution}
+The sample space, $\Omega$, is the set of all possible outcomes for the five flips.
+Since there are 5 independent flips, and each has 2 possible outcomes, we have
+that $|\Omega| = 2^5 = 32$.
+
+Let
+\[
+  A = \{ \text{ you get at least one head } \}.
+\]
+Then,
+\begin{align*}
+  A^c &= \{ \text{ you don't get any heads } \} \\
+      &= \{ (T,T,T,T,T) \}.
+\end{align*}
+Thus, by the complement rule,
+\begin{align*}
+  \Pr(A) &= 1 - \Pr(A^c) \\
+         &= 1 - \tfrac{1}{32} \\
+         &= \tfrac{31}{32}.
+\end{align*}
+\end{solution}
+\vspace{\stretch{1}}
+
+
+
+\newpage
+\fullwidth{\section*{Conditional Probability}}
+
+
+
+\question \label{ques:industry-gender}
+
+Here is a table of the tabulated frequencies for undergrad major and gender for the respondents to a class survey.
+\begin{center}
+\bgroup
+%\def\arraystretch{1.5}
+\begin{tabular}{l@{\extracolsep{2em}}rrr}
+\toprule
+& \multicolumn{2}{c}{Gender} & \\
+\cmidrule(r){2-3}
+Undergrad Major & Female & Male & Total \\
+\midrule
+Business       &  9 &  6 & 15 \\
+Hum./Soc.~Sci. & 10 & 12 & 22 \\
+Sci./Eng.      &  2 &  8 & 10 \\
+\addlinespace
+\quad Total    & 21 & 26 & 47 \\
+\bottomrule
+\end{tabular}
+\egroup
+\end{center}
+
+
+\begin{parts}
+
+\part Express the following statements as conditional probabilities:
+\begin{itemize}
+\item $\frac{9}{21} \approx 43\%$ of the females have undergrad major in Business. 
+
+\item $\frac{9}{15} = 60\%$ of those having undergrad major in Business  are female.
+\end{itemize}
+
+\begin{solution}
+\begin{align*}
+  P(\text{Business} \mid \text{Female}) &= \frac{9}{21}, \\
+  P(\text{Female} \mid \text{Business} ) &= \frac{9}{15}.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part Compute
+  $P(\text{Male} \mid \text{Sci./Eng.})$
+and
+  $P(\text{Sci./Eng.}  \mid \text{Male})$.
+Explain the difference between these two quantities.
+
+\begin{solution}
+\begin{align*}
+  P(\text{Male} \mid \text{Sci./Eng.}) &= \frac{8}{10} = 80\%, \\
+  P(\text{Sci./Eng.} \mid \text{Male}) &= \frac{8}{26} \approx 31\%.
+\end{align*}
+The quantity
+  $P(\text{Male} \mid \text{Sci./Eng.} )$
+is the proportion of those having undergrad major in Sci./Eng.  that are male.
+The quantity
+$P(\text{Sci./Eng.} \mid \text{Male})$
+is the proportion of males having undergrad major in Sci./Eng.\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+\newpage
+
+
+\question The following table lists the pick-up and drop-off locations of
+approximately 170 million yellow cab taxi trips made in New York City in 2013.
+Numbers are reported in thousands.
+
+
+\bgroup
+\footnotesize
+\begin{center}
+\begin{tabular}{l@{\extracolsep{2em}}rrrrrr}
+\toprule
+& \multicolumn{5}{c}{Drop-off} & \\
+\cmidrule(r){2-6}
+Pick-up    & Bronx &  Brooklyn & Manhattan & Queens & Staten Is. & Total \\
+\midrule
+Bronx      &     53 &         1 &        37 &      4 &          0 &      95 \\
+Brooklyn   &      8 &     2,707 &     1,598 &    273 &          2 &   4,588 \\
+Manhattan  &    638 &     5,458 &   143,656 &  5,906 &         22 & 155,680 \\
+Queens     &    122 &     1,022 &     5,058 &  2,281 &          8 &   8,491 \\
+Staten Is. &      0 &         0 &         0 &      0 &          3 &       3 \\
+\addlinespace
+\quad Total &   821 &     9,188 &   150,349 &  8,464 &         35 & 168,857 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\egroup
+
+\begin{parts}
+
+
+\part Find
+$P(\text{drop-off Brooklyn} \mid \text{pick-up Manhattan})$
+and
+$P(\text{pick-up Manhattan} \mid \text{drop-off Brooklyn})$.  Explain the
+difference between these two quantities.
+
+\begin{solution}
+\begin{align*}
+  P(\text{drop-off Brooklyn} \mid \text{pick-up Manhattan})
+    &= \frac{5458}{155680}
+    \approx 3.5\%, \\
+  P(\text{pick-up Manhattan} \mid \text{drop-off Brooklyn})
+    &= \frac{5458}{9188}
+    \approx 59.4\%.
+\end{align*}
+3.5\% of the rides that pick up in Manhattan drop off in Brooklyn;
+59.4\% of the rides that drop off in Brooklyn originate in Manhattan.
+
+\end{solution}
+\vspace{\stretch{1}}
+
+\part Express the following statement as a conditional probability: ``29\% of
+the trips with drop-off locations in Brooklyn originated in the same
+borough.''
+
+\begin{solution}
+\[
+  P(\text{pick-up Brooklyn} \mid \text{drop-off Brooklyn}) = \frac{2707}{9188} = 29\%.
+\]
+Note:
+\[
+  P(\text{drop-off Brooklyn} \mid \text{pick-up Brooklyn}) = \frac{2707}{4588} = 59\%.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+\newpage
+
+
+
+% \question \label{I:iphone} Suppose the following table gives the numbers of NYU undergraduates
+% who own iPhones, broken down by class:
+% 
+% \begin{center}
+% \bgroup
+% %\def\arraystretch{1.5}
+% \begin{tabular}{l@{\extracolsep{2em}}rrr}
+% \toprule
+% & \multicolumn{2}{c}{Own iPhone} & \\
+% \cmidrule(lr){2-3}
+% Class & Yes & No & Total \\
+% \midrule
+% Freshman & 400 & 600 & 1000 \\
+% Sophomore & 300 & 600 & 900 \\
+% Junior & 700 & 500 & 1200 \\
+% Senior & 500 & 500 & 1000 \\
+% \addlinespace
+% \quad Total & 1900 & 2200 & 4100 \\
+% \bottomrule
+% \end{tabular}
+% \egroup
+% \end{center}
+% 
+% \begin{parts}
+% 
+% \part If we pick a random NYU undergrauate, and she happens to be a Freshman,
+% what is the probability that she owns an iPhone?
+% 
+% \begin{solution}
+% \[
+%   \frac{400}{1000}
+% \]
+% \end{solution}
+% \vspace{\stretch{1}}
+% 
+% 
+% \part Do the above problem using the equation $\Pr(B \mid A) = \frac{\Pr(A \cap B)}{\Pr(A)}$.
+% 
+% \begin{solution}
+% Define the following two events
+% \begin{align*}
+%   I &= \text{``the student owns an iPhone''} \\
+%   F &= \text{``the student is a Freshman''}
+% \end{align*}
+% Then,
+% \begin{align*}
+%   \Pr(I \mid F)
+%     &= \frac{\Pr(I \cap F)}{\Pr(F)} \\
+%     &= \frac{400/4100}{1000/4100} \\
+%     &= \frac{400}{1000}. 
+% \end{align*}
+% \end{solution}
+% \vspace{\stretch{1}}
+% 
+% 
+% \ifprintanswers\newpage\fi
+% 
+% \part If we pick a random NYU undergraduate and he happens to have an iPhone,
+% what is the probability that he is a Freshman?
+% 
+% \begin{solution}
+% \begin{align*}
+%   \Pr(F \mid I)
+%     &= \frac{\Pr(F \cap I)}{\Pr(I)} \\
+%     &= \frac{400/4100}{1900/4100} \\
+%     &= \frac{400}{1900}.
+% \end{align*}
+% \end{solution}
+% \vspace{\stretch{1}}
+% 
+% 
+% \part If we pick a random NYU undergraduate and he does not have an iPhone,
+% what is the probability that he is a Sophomore?
+% 
+% \begin{solution}
+% Define the event
+% \[
+%   S = \text{``the student is a Sophomore''}.
+% \]
+% Then,
+% \begin{align*}
+%   \Pr(S \mid I^c)
+%     &= \frac{\Pr(S \cap I^c)}{\Pr(I^c)} \\
+%     &= \frac{600/4100}{2200/4100} \\
+%     &= \frac{600}{2200}.
+% \end{align*}
+% \end{solution}
+% \vspace{\stretch{1}}
+% 
+% 
+% \part If we pick a random NYU undergraduate, and we happen to pick an
+% upperclassman (Junior or Senior), what is probability that she does not own
+% an iPhone?
+% 
+% \begin{solution}
+% Define the following events
+% \begin{align*}
+% %  J &= \{ \text{ the student is a Junior } \} \\
+% %  T &= \{ \text{ the student is a Senior } \} \\
+%   U &= \text{``the student is an upperclassman''}.
+% \end{align*}
+% Then,
+% \begin{align*}
+%   \Pr(I^c \mid U)
+%     &= \frac{\Pr(I^c \cap U)}{\Pr(U)}
+% \end{align*}
+% Now,
+% \begin{align*}
+%   \Pr(U) %&= \Pr(J \cup T) \\
+%          %&= \Pr(J) + \Pr(T) \\
+%          &= \frac{1200 + 1000}{4100} \\
+%          &= \frac{2200}{4100}.
+% \end{align*}
+% %where we have used the fact that $J$ and $T$ are mutually exclusive to compute
+% %$\Pr(J \cup T)$.
+% Next,
+% \begin{align*}
+%   \Pr(I^c \cap U)
+% %  &= \Pr\big(I^c \cap (J \cup T)\big) \\
+% %  &= \Pr\big((I^c \cap J) \cup (I^c \cap T)\big) \\
+% %  &= \Pr(I^c \cap J) + \Pr(I^c \cap T) \\
+%   &= \frac{500 + 500}{4100} \\
+%   &= \frac{1000}{4100}.
+% \end{align*}
+% Putting it all together,
+% \begin{align*}
+%   \Pr(I^c \mid U)
+%     &= \frac{\Pr(I^c \cap U)}{\Pr(U)} \\
+%     &= \frac{1000/4100}{2200/4100} \\
+%     &= \frac{1000}{2200}.
+% \end{align*}
+% \end{solution}
+% \vspace{\stretch{1}}
+% 
+% 
+% \end{parts}
+% 
+% \ifprintanswers\else\newpage\fi
+
+
+%\question Suppose we roll two dice and $A = \text{``The sum is 8,''}$
+%$B = \text{``The first die is 3.''}$  What is the probability that the first
+%die is 3 given that the sum is 8, i.e. what is $P(B \mid A)$?
+%
+%\begin{solution}
+%The sample space, $\Omega$, is the set of all 36 pairs $(i,j)$, where $i$ is
+%the first roll, and $j$ is the second roll:
+%\[
+%  \Omega = \{ (1,1), (1,2), \dotsc, (6,6) \}.
+%\]
+%The events of interest are
+%\begin{align*}
+%  A &= \{ (2,6), (3,5), (4,4), (5,3), (6,2) \}, \\
+%  B &= \{ (3,1), (3,2), (3,3), (3,4), (3,5), (3,6) \}, \\
+%  A \cap B &= \{ (3,5) \}.
+%\end{align*}
+%Thus,
+%\begin{align*}
+%  \Pr(B \mid A)
+%    &= \frac{\Pr(B \cap A)}{\Pr(A)} \\
+%    &= \frac{1/36}{5/36} \\
+%    &= \frac{1}{5}.
+%\end{align*}
+%\end{solution}
+%
+%\vspace{\stretch{1}}
+%
+%
+%\question Suppose we draw to cards out of a deck of 52.  Let $A = \text{``The
+%first card is a space,''}$ $B = \text{``The second card is a spade.''}$  Find
+%the probability that the second card is a spade given that the first card is
+%a spade.
+%
+%\begin{solution}
+%If the first card is a spade, then at the time we draw the second card, there
+%are 51 cards in the deck, and 12 of them are spades.  Thus,
+%\[
+%  \Pr(B \mid A) = \frac{12}{51}.
+%\]
+%The other way to do this problem is by first computing
+%\begin{align*}
+%  \Pr(A) &= \frac{13}{52} \\
+%  \Pr(B \cap A) &= \frac{\binom{13}{2}}{\binom{52}{2}} \\
+%                &= \frac{13 \cdot 12 / 2!}{52 \cdot 51 / 2!} \\
+%                &= \frac{13 \cdot 12}{52 \cdot 51}.
+%\end{align*}
+%Then,
+%\begin{align*}
+%  \Pr(B \mid A)
+%    &= \frac{\Pr(B \cap A)}{\Pr(A)} \\
+%    &= \frac{12}{51}.
+%\end{align*}
+%\end{solution}
+%\vspace{\stretch{1}}
+
+
+\fullwidth{\section*{The Multiplicative Rule}}
+
+
+\question Out of the 58 students enrolled in the class, 24 are female (41\%) and
+34 are male (59\%).  Suppose that we randomly select two different students.
+
+\begin{parts}
+
+\part What is the probability that both students are male?
+
+\begin{solution}
+Define the two events
+\begin{align*}
+  A &= \text{the first student picked is male} \\
+  B &= \text{the second student picked is male}.
+\end{align*}
+Then, $P(A) = \tfrac{34}{58}$, and $P(B\mid A) = \tfrac{33}{57}$.  Thus, the
+probability that both will be male is
+\begin{align*}
+  P(A \cap B) &= P(A) P(B \mid A) \\
+              &= \frac{34}{58} \cdot \frac{33}{57} \\
+              &= \frac{1122}{3306} \\
+              &\approx 34\%.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part What is the probability that both students are female?
+
+\begin{solution}
+Using the events $A$ and $B$ defined in the previous part,
+$P(A^c) = \tfrac{24}{58}$ and $P(B^c \mid A^c) = \tfrac{23}{57}$.  Thus, the
+probability that both will be female is
+\begin{align*}
+  P(A^c \cap B^c) &= P(A^c) P(B^c \mid A^c) \\
+                  &= \frac{24}{58} \cdot \frac{23}{57} \\
+                  &= \frac{552}{3306} \\
+                  &\approx 17\%.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part What is the probability that one of the students is male and one of the
+students is female?
+
+\begin{solution}
+The event ``one student is male and the other is female'' is equivalent to
+the compound event $(A \cap B^c) \cup (A^c \cap B)$; that is, either the
+first is male and the second is female, or the first is female and the
+second is male.  Since $A \cap B^c$ and $A^c \cap B$ are mutually exclusive,
+it follows that
+\[
+  P(\text{one male and one female})
+    = P(A \cap B^c) + P(A^c \cap B).
+\]
+Using the multiplicative rule,
+\begin{align*}
+  P(A \cap B^c) &= P(A) P(B^c \mid A) \\
+                &= \frac{34}{58} \frac{24}{57} \\
+                &= \frac{816}{3306} \\
+  \\
+  P(A^c \cap B) &= P(A^c) P(B \mid A^c) \\
+                &= \frac{24}{58} \frac{34}{57} \\
+                &= \frac{816}{3306}.
+\end{align*}
+Thus,
+\begin{align*}
+  P(\text{one male and one female})
+    &= \frac{816}{3306} + \frac{816}{3306} \\
+    &= \frac{1632}{3306} \\
+    &\approx 49\%.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+
+\question Of the 48 students who filled out the survey, 33 indicated that they
+drink at least one cup of coffee per day, while 15 indicated that they do not
+drink coffee on a typical day.  Suppose that we randomly select two different survey respondents.
+
+\begin{parts}
+
+\part What is the probability that both students regularly drink coffee?
+
+\begin{solution}
+\[
+  \frac{33}{48} \cdot \frac{32}{47} = \frac{1056}{2256} \approx 47\%.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part What is the probability that neither student regularly drinks coffee?
+
+\begin{solution}
+\[
+  \frac{15}{48} \cdot \frac{14}{47} = \frac{210}{2256} \approx 9\%.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part What is the probability that exactly one student regularly drinks
+coffee?
+
+\begin{solution}
+\[
+  \frac{33}{48} \cdot \frac{15}{47} + \frac{15}{48} \cdot \frac{33}{47}
+    = \frac{990}{2256}
+    \approx 44\%.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+\newpage
+
+\question A class has 20 students.  What is the probability that at least
+two students have the same birthday?  Assume that each person in the class was
+assigned a random birthday between January 1 and December 31.
+
+\begin{solution}
+Assume that everyone in the class is randomly assigned a birthday, which
+corresponds to number between 1 and 365 representing the day of the year.
+It turns out to be much easier to compute the probability using the complement
+rule, as
+\[
+  \Pr(\text{at least 2 people have the same birthday})
+  = 1 - \Pr(\text{all 20 birthdays are different}).
+\]
+
+We first compute the size of sample space. That is $365^20$.
+
+Next, we compute the number of ways to assign 365 birthdays to 20 students, and no two students can have the same birthday.
+That is $P(365,20)=\frac{365!}{345!}$.
+
+Finally, the probability is 
+$$ \frac{P(365,20)}{365^20}$$.
+
+\vspace{1\baselineskip}
+
+
+\end{solution}
+
+
+\end{questions}
+
+\end{document}
+

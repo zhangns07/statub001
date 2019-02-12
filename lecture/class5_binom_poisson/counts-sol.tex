@@ -1,0 +1,434 @@
+\documentclass[answers,11pt]{exam}
+
+\makeatletter
+\newcommand{\course}[1]{\def\@course{#1}}
+\makeatother
+
+\makeatletter
+\pagestyle{headandfoot}
+\firstpageheader{}{\large \textbf{\@title \ifprintanswers ~-- Solutions \else \fi} \\ \@course}{}
+\makeatother
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subfig}
+
+\DeclareGraphicsExtensions{.png,.pdf}
+
+
+\DeclareMathOperator*{\Prob}{P}
+\renewcommand{\Pr}{\Prob}
+\DeclareMathOperator*{\E}{E}
+\DeclareMathOperator*{\var}{var}
+\DeclareMathOperator*{\sd}{sd}
+\renewcommand{\binom}[2]{\ensuremath{{}_{#1}C_{#2}}\,}
+
+
+
+\title{Models for Counts}
+\course{STAT-UB.0001 -- Statistics for Business Control}
+
+\begin{document}
+\begin{questions}
+
+\fullwidth{\section*{Binomial Random Variables}}
+
+
+\question A certain coin has a 25\% of landing heads, and a 75\% chance of
+landing tails.
+
+\begin{parts}
+\part If you flip the coin 4 times, what is the chance of getting
+exactly 2 heads?
+
+\begin{solution}
+There are 6 outcomes whith exactly 2 heads:
+\[
+  HHTT, HTHT, HTTH, THHT, THTH, TTHH.
+\]
+By independence, each of these outcomes has probability $(.25)^2 (.75)^2$.
+Thus,
+\[
+  \Pr(\text{exactly 2 heads out of 4 flips}) = 6 (.25)^2 (.75)^2.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part If you flip the coin 10 times, what is the chance of getting
+exactly 2 heads?
+
+\begin{solution}
+Rather than list all outcomes, we will use a counting rule.  There are
+$\binom{10}{2}$ ways of choosing the positions for the two heads; each of
+these outcomes has probability $(.25)^2 (.75)^8$.  Thus,
+\[
+  \Pr(\text{exactly 2 heads out of 10 flips}) = \binom{10}{2} (.25)^2 (.75)^8.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+\question Suppose that you are rolling a die eight times.  Find the probability
+that the face with two spots comes up exactly twice.
+
+\begin{solution}
+Let $X$ be the number of times that we get the face with two spots.
+This is a binomial random variable with $n = 8$ and $p = \frac{1}{6}$.  We
+compute
+\begin{align*}
+  P(X = 2)
+    &= \binom{n}{2} p^2 (1 - p)^{n - 2} \\
+    &= \binom{8}{2} \left(\frac{1}{6}\right)^2 \left(\frac{5}{6}\right)^{6} \\
+    &\approx 0.26.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\newpage
+
+
+\question The probability is 0.04 that a person reached on a ``cold call'' by a
+telemarketer will make a purchase.  If the telemarketer calls 40 people, what
+is the probability that at least one sale with result?
+
+\begin{solution}
+Let $X$ be the number of sales.  This is a binomial random variable with $n =
+40$ and $p = 0.04$.  Thus,
+\begin{align*}
+  P(X \geq 1) &= 1 - P(X < 1) \\
+    &= 1 - P(X = 0) \\
+    &= 1 - \binom{n}{0} p^0 (1-p)^{n-0} \\
+    &= 1 - (0.96)^{40} \\
+    &\approx .805
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+
+
+\question A new restaurant opening in Greenwich village has a 30\% chance of
+survival during their first year.  If 16 restaurants open this year, find the
+probability that 
+
+\begin{parts}
+  
+\part exactly 3 restaurants survive.
+
+\begin{solution}
+Let $X$ be the number that survive.  This is a binomial random variable with $n =
+16$ and $p = 0.3$.  Therefore,
+\begin{align*}
+  P(X = 3)
+  &= \binom{16}{3} (0.3)^3(1-0.3)^{(16 - 3)} \\
+    &= .146
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part fewer than 3 restaurants survive.
+
+\begin{solution}
+\begin{align*}
+  P(X < 3)
+    &= P(X = 0) + P(X = 1) + P(X = 2) \\
+    &= \binom{16}{0} (0.3)^0(0.7)^{16}
+     + \binom{16}{1} (0.3)^1(0.7)^{15}
+     + \binom{16}{2} (0.3)^2(0.7)^{14} \\
+    &= .099
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part more than 3 restaurants survive.
+
+\begin{solution}
+\begin{align*}
+  P(X > 3)
+    &= 1 - P(X \leq 3) \\
+    &= 1 - (.099 + .146) \\
+    &= .754
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+\newpage
+
+\question \label{ques:binom-game} The probability of winning at a certain game
+is 0.10.  If you play the game 10 times, what is the probability that you win
+at most once?
+
+
+\begin{solution}
+Let $X$ be the number of times that we win.  This is a binomial random
+variable with $n = 10$ and $p = 0.10$.  We compute
+\begin{align*}
+  P(X \leq 1)
+    &= P(X = 0) + P(X = 1) \\
+    &= \binom{n}{0} p^0 (1-p)^{n-0} + \binom{n}{1} p^1 (1 - p)^{n-1} \\
+    &= \binom{10}{0} (0.10)^0 (0.90)^{10} + \binom{10}{1} (0.10)^1 (0.90)^9 \\
+    &= (0.90)^{10} + 10 \, (0.10) (0.90)^9 \\
+    &\approx 0.736.
+\end{align*}
+
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\question The probability is 0.2 that an audit of a retail business will turn up
+irregularities in the collection of state sales tax.  If 20 retail businesses
+are audited, find the probability that
+
+\begin{parts}
+
+%\part exactly 3 will have irregularities in the collection of state sales tax.
+
+
+%\part at least 3 will have irregularities in the collection of state sales
+%tax.
+
+%\begin{solution}
+%We have
+%\begin{align*}
+%  P(X \geq 3)
+%    &= 1 - P(X < 3) \\
+%    &= 1 - \{ P(X = 0) + P(X = 1) + P(X = 2) \} \\
+%    &= 1 - \left\{
+%      \binom{16}{0} (0.3)^0 (0.7)^{16}
+%      + \binom{16}{1} (0.3)^1 (0.7)^{15}
+%      + \binom{16}{2} (0.3)^2 (0.7)^{14}
+%      \right\}.
+%\end{align*}
+%\end{solution}
+
+\part fewer than 2 will have irregularities in the collection of state sales
+tax.
+
+\begin{solution}
+Let $X$ be the number audited.  This is a binomial random variable with $n =
+20$ and $p = 0.2$.  Therefore,
+\begin{align*}
+  P(X < 2)
+    &= \binom{20}{0} (0.2)^0 (0.8)^{20}
+    + \binom{20}{1} (0.2)^1 (0.8)^{19}
+    &\approx .069
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+%\item at most 5 will have irregularities in the collection of state sales tax.
+
+\part more than 2 will have irregularities in the collection of state sales
+tax.
+
+\begin{solution}
+\begin{align*}
+  P(X > 2)
+    &= 1 - P(X \leq 2) \\
+    &= 1 - \bigg[ \binom{20}{0} (0.2)^0 (0.8)^{20}
+    + \binom{20}{1} (0.2)^1 (0.8)^{19}
+    + \binom{20}{2} (0.2)^2 (0.8)^{18} \bigg] \\
+    &\approx .794.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+%\part no more than 5 will have irregularites in the collection of state sales
+%tax.
+
+%\part no fewer than 5 will have irregularities in the collection of state
+%sales tax.
+
+\end{parts}
+
+
+\newpage
+\fullwidth{\section*{Poisson Random Variables}}
+
+\question \label{ques:station-calls} The number of calls arriving at the
+Swampside Police Station follows a Poisson distribution with rate 4.6/hour.
+
+\begin{parts}
+
+\part What is the probability that exactly six calls will come between 8:00
+p.m.~and 9:00 p.m.?
+
+\begin{solution}
+Let $X$ be the number of calls that arrive between 8:00 p.m.~and 9:00 p.m.
+This is a Poisson random variable with mean
+\[
+  \lambda = E(X) = (4.6 \text{ calls/hour}) (1 \text{ hour}) = 4.6\text{ calls}.
+\]
+Thus,
+\[
+  P(X = 6) = \frac{\lambda^6}{6!} e^{-\lambda} = \frac{(4.6)^6}{6!} e^{-4.6}.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part Find the probability that exactly 7 calls will come between 9:00
+p.m.~and 10:30 p.m.
+
+\begin{solution}
+Let $X$ be the number of calls that arrive between 9:00 p.m.~and 10:30 p.m.
+This is a Poisson random variable with mean
+\[
+  \lambda = E(X) = (4.6 \text{ calls/hour}) (1.5 \text{ hours}) = 6.9\text{ calls}.
+\]
+Thus,
+\[
+  P(X = 7) = \frac{\lambda^7}{7!} e^{-\lambda} = \frac{(6.9)^7}{7!} e^{-6.9}.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+\question \label{ques:pois-car-accidents} Car accidents occur at a particular
+intersection in the city at a rate of about 2/year.
+
+
+\begin{parts}
+  
+\part Estimate the probability of no accidents occurring in a 6-month period.
+
+\begin{solution}
+Let $X$ be the number of car accidents.  This is  Poisson random variable with
+mean
+\[
+  \lambda = E(X) = (2 \text{ accidents/year}) (0.5 \text{ years}) = 1\text{ accident}.
+\]
+Thus,
+\[
+  P(X = 0) = \frac{\lambda^0}{0!} e^{-\lambda} = e^{-1} \approx .368.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part Estimate the probability of two or more accidents occurring in a year.
+
+\begin{solution}
+Let $X$ be the number of car accidents.  This is  Poisson random variable with
+mean
+\[
+  \lambda = E(X) = (2 \text{ accidents/year}) (1.0 \text{ years}) = 2\text{ accident}.
+\]
+Thus,
+\begin{align*}
+  P(X \geq 2) 
+    &= 1 - P(X < 2) \\
+    &= 1 - \bigg[ \frac{\lambda^0}{0!} e^{-\lambda} + \frac{\lambda^1}{1!} e^{-\lambda} \bigg] \\
+    &\approx .594.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+\newpage
+
+
+\fullwidth{\section*{Empirical Rule with Binomial and Poisson Random Variables}}
+
+\question{If you flip a fair coin 100 times, would it be unusual to get 42
+heads and 58 tails?}
+
+\begin{solution}
+Let $X$ be the number of heads.  Then, $X$ is binomial with $n = 100$ and $p =
+0.5$.  Thus, its expecation and standard deviation are
+\[
+  \mu = n p  = (100) (0.5) = 50,
+\]
+and
+\[
+  \sigma = \sqrt{n p (1 - p)} = \sqrt{(100) (0.5) (1 - 0.5)} = 5.
+\]
+Since $n p \geq 15$ and $n (1 - p) \geq 15$, we can use the empirical rule to
+approximate the distribution of $X$.  Thus, approximately 95\% of the time,
+$X$ will be in the range $\mu \pm 2 \sigma$, or $(40, 60)$.  So, it would not
+be unusual get observe $X = 42$.
+
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\question If $X$ is a Poisson random variable with $\lambda = 225$, would it be
+unusual to get a value of $X$ which is less than 190?
+
+\begin{solution}
+Set
+\begin{gather*}
+  \mu = E(X) = \lambda = 255, \\
+  \sigma = \mathrm{sd}(X) = \sqrt{\lambda} = 15.
+\end{gather*}
+Define $z$ to be the number of standard deviations above the mean that 190 is,
+i.e.
+\[
+  190 = \mu + \sigma z.
+\]
+Then,
+\[
+  z = \frac{190 - \mu}{\sigma} = \frac{-35}{15} \approx -2.33.
+\]
+A value of $X$ which is below 190 is more than 2.33 standard deviations
+below the mean of $X$.  The empirical rule tells us that observations more
+than 2 standard deviations away from the mean are unusual (they occur less
+than 95\% of the time).  Therefore, values
+of $X$ below 190 are unusual.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question The probability is 0.10 that a person reached on a ``cold call'' by
+a telemarketer will make a purchase.  If the telemarketer calls 200 people,
+would it be unusual for them to get 30 purchases?
+
+\begin{solution}
+Let $X$ be the number of purchases.  This is a Binomial random variable with
+size $n = 200$ and success probability $p = 0.10$.  Thus, the expectation and
+standard deviation of $X$ are
+\begin{align*}
+  \mu &= n p = (200)(.10) = 20 \\
+  \sigma &= \sqrt{n p (1 - p)} = \sqrt{(200)(.10)(.90)} = \sqrt{18} \approx 4.2
+\end{align*}
+Since $n p \geq 15$ and $n p (1 - p) \geq 15$, the distribution of $X$ can be
+approximated by the empirical rule.  Using the empirical rule
+approximation, 95\% of the time, $X$ will be in
+the range $\mu \pm 2 \sigma$, or (11.6, 28.4), and 99.7\% of the time, $X$
+will be in the range $\mu \pm 3 \sigma$, or (7.4, 32.6).  We would see $X \geq 30$ less
+than 5\% of the time.  It would be unusual to see X = 30, but not highly
+unusual.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+
+\end{questions}
+
+\end{document}

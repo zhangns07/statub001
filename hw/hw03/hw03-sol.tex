@@ -1,0 +1,372 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%This is a science homework template. Modify the preamble to suit your needs. 
+%The junk text is   there for you to immediately see how the headers/footers look at first 
+%typesetting.
+
+
+\documentclass[answers,11pt]{exam}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm}
+%geometry (sets margin) and other useful packages
+\usepackage{alltt}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{fullpage}
+\usepackage{graphicx,ctable,booktabs}
+\usepackage{hyperref}
+
+\DeclareMathOperator*{\Prob}{P}
+\renewcommand{\Pr}{\Prob}
+\DeclareMathOperator*{\E}{E}
+\DeclareMathOperator*{\var}{var}
+\DeclareMathOperator*{\sd}{sd}
+%\renewcommand{\binom}[2]{\ensuremath{{}_{#1}C_{#2}}\,}
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{problem}{\@startsection
+       {section}
+       {1}
+       {-.2em}
+       {-3.5ex plus -1ex minus -.2ex}
+       {2.3ex plus .2ex}
+       {\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+       \large\bf\noindent{Problem }
+       }
+       }
+       {%\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+       \begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+
+
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\lhead{Problem \thesection}
+%\chead{} 
+%\rhead{\thepage} 
+%\lfoot{\small\scshape course name}
+%\cfoot{} 
+%\rfoot{\footnotesize HW \#1}
+%\renewcommand{\headrulewidth}{.3pt}
+%\renewcommand{\footrulewidth}{.3pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%Contents of problem set
+%    
+\begin{document}
+
+\begin{center}
+  \large
+  \textbf{Homework \#3 -- Due Thursday, Jul.~26} \\
+  STAT-UB.0001 -- Statistics for Business Control \\
+\end{center}
+
+
+\thispagestyle{empty}
+
+\begin{problem}{}
+
+A multiple-choice quiz has 20 questions. Each question has five possible
+answers, of which only one is correct.
+
+\begin{enumerate}[(a)]
+
+\item What is the probability that sheer guesswork will yield exactly 10 correct answers?
+\begin{solution}
+The number of correct answers, $X$, is binomial with $n = 20$ and $p = 1/5 =0.2$.
+\begin{align*}
+P(X = 10)
+   &=  \binom{20}{10} (.20)^{10} (.80)^{10} = 0.00203
+\end{align*}
+
+
+\end{solution}
+
+\item What is the expected number of correct answers by sheer guesswork?
+
+\begin{solution}
+\[
+  E[X] = (20) (.2) = 4.
+\]
+\end{solution}
+
+\item Suppose 5 points are awarded for a correctly answered question. How many
+points should be deducted for an incorrectly answered question, so that for a
+student guessing randomly, the expected score on a question is zero? (Most
+standardized tests use this method to set penalties for guessing.)
+\begin{solution}
+If we let $c$ denote the cost for guessing incorrectly, and if $Y$ denotes the
+score for a question on which a student guesses randomly, then $Y$
+has the PDF:
+\begin{center}
+\begin{tabular}{c|cc}
+$y$    & $-c$   & $5$ \\
+\hline
+$p(y)$ & $0.80$ & $0.20$
+\end{tabular}
+\end{center}
+For the expected score to be zero, we must have
+\[
+  \E[Y] = (0.80)(-c) + (0.20)(5) = 0,
+\]
+so that
+\[
+    c = \frac{(0.20)(5)}{(0.80)}
+      = 1.25.
+\]
+
+\end{solution}
+
+\item If a student is able to correctly eliminate one option as a possible
+correct answer but is still guessing randomly, what happens to his/her
+expected score for that question? Use your answer to (c) as the number of
+points being deducted for an incorrect answer.
+\begin{solution}
+In this case $Y$ has the PDF
+\begin{center}
+\begin{tabular}{c|cc}
+$y$    & $-1.25$   & $5$ \\
+\hline
+$p(y)$ & $0.75$ & $0.25$
+\end{tabular}
+\end{center}
+The expected score is
+\[
+  \E[Y] = (0.75)(-1.25) + (0.25)(5)
+        = 0.3125.
+\]
+
+
+\end{solution}
+
+\end{enumerate}
+
+\end{problem}
+
+\newpage
+\begin{problem}{}
+
+A Motel has 16 bedrooms. From past experience, the manager knows that 20\% of
+the people who make room reservations don't show up. The manager accepts 20
+reservations. If a customer with a reservation shows up and the motel has run
+out of rooms, it is the motel's policy to pay \$100 as compensation to the
+customer. 
+\begin{enumerate}[(a)]
+\item What is the expected number of customers that will show up? 
+\begin{solution}
+Let $X$ denote the number of customers that show up.  This is binomial with $n
+= 20$ and $p = 0.80$.  
+
+We can compute
+\[
+\E [X] = (20)(0.80) = 16.
+\]
+\end{solution}
+
+\item What is the expected value of the compensation that the motel must pay?
+\begin{solution}
+The manager will have to pay compensation if $X > 16$.
+We can compute
+\begin{align*}
+  P(X = 17) &= \binom{20}{17} (.80)^{17} (.20)^3 = 0.2054\\
+  P(X = 18) &= \binom{20}{18} (.80)^{18} (.20)^2 = 0.1369\\
+  P(X = 19) &= \binom{20}{19} (.80)^{19} (.20)^1 = 0.0576\\
+  P(X = 20) &= \binom{20}{20} (.80)^{20} (.20)^0 = 0.0115\\
+\end{align*}
+The probability that the manager will not pay compensation is
+\begin{align*}
+  P(X \leq 16)
+    &= 1 - (0.2054 + 0.1369 + 0.0576 + 0.0115)
+    = 0.5886.
+\end{align*}
+
+Let $Y$ denote the amount of compensation that the
+manager has to pay.  We can use the probabilities above to compute the PDF of
+$Y$:
+
+\begin{center}
+\begin{tabular}{c|ccccc}
+$x$    &      $\leq$ 16 &    17&    18&    19&    20\\\hline
+$y$    &      0 &    100 &    200 &    300 &    400  \\
+\hline
+$p(y)$ & 0.5886 & 0.2054 & 0.1369 & 0.0576 & 0.0115 
+\end{tabular}
+\end{center}
+
+The expected value of $Y$ is
+\begin{align*}
+  \E[Y] &= 
+    (0.5886)(0)
+    + (0.2054)(100)
+    + (0.1369)(200)
+    + (0.0576)(300)
+    + (0.0115)(400)\\
+    &= 69.8.
+\end{align*}
+The expected compensation is \$69.8.
+
+
+\end{solution}
+
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}{}
+An automatic car wash takes exactly 5 minutes to wash a car. On average, 8 cars per hour arrive at the car wash.
+Suppose the number of cars arrive follows a Poisson distribution. Now suppose 15 minutes before closing time, 3 cars are in line.
+If the car wash is in continuous use until closing time, what is the chance that anyone will be in line at closing time?
+\begin{solution}
+Let $X$ denote the number of cars that arrive in the 15 mins. This is a Poisson with $\lambda=\frac{(8)(15)}{(60)}=2$.
+If one or more cars arrive at the car wash within the 15 mins, then there will be someone in line at closing time. Thus,
+we can compute
+\begin{align*}
+\Pr(X > 0) & = 1 - \Pr(X=0) \\
+                 &= 1- \frac{\lambda^0 e^{-\lambda}}{0!} \\
+                 &= 1- \frac{(1)( e^{-2})}{1} \\
+                 &= 0.864.
+\end{align*}
+\end{solution}
+\end{problem}
+
+\newpage
+\begin{problem}{}
+ 
+Suppose that you throw two dice. Each die can come up as $1$, $2$, $3$, $4$,
+$5$ or $6$, and the results from the two dice are independent of each other.
+We are interested in the random variable $X$, the sum of the two numbers that
+land face up. The possible values for $X$ are $2, 3, \dotsc, 12$. 
+ 
+\begin{enumerate}[(a)]
+
+\item Make a table giving the probability distribution of $X$.  Explain
+briefly how you did the calculations. 
+\begin{solution}
+The first and second rolls are each equally likely to be any of the numbers
+from 1--6.  We can compute a table of the values of $X$ for each pair
+$(\text{first roll}, \text{second roll})$:
+
+\begin{center}
+\begin{tabular}{c|cccccc}
+  & 1 & 2 & 3 &  4 &  5 &  6 \\
+\hline
+1 & 2 & 3 & 4 &  5 &  6 &  7 \\
+2 & 3 & 4 & 5 &  6 &  7 &  8 \\
+3 & 4 & 5 & 6 &  7 &  8 &  9 \\
+4 & 5 & 6 & 7 &  8 &  9 & 10 \\
+5 & 6 & 7 & 8 &  9 & 10 & 11 \\
+6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+\end{tabular}
+\end{center}
+
+Each of the 36 sample points is equally likely.  There is one sample point
+with $X = 2$, two sample points with $X = 3$, etc.  Thus, we have the pdf
+
+\begin{center}
+\begin{tabular}{c|ccccccccccc}
+$x$ & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+\hline
+$p(x)$
+& $\frac{1}{36}$
+& $\frac{2}{36}$
+& $\frac{3}{36}$
+& $\frac{4}{36}$
+& $\frac{5}{36}$
+& $\frac{6}{36}$
+& $\frac{5}{36}$
+& $\frac{4}{36}$
+& $\frac{3}{36}$
+& $\frac{2}{36}$
+& $\frac{1}{36}$ \\
+\end{tabular}
+\end{center}
+\end{solution}
+\item Show that $E(X) = 7$ and $\mathrm{var}(X) = 210/36 = 5.833$
+
+\begin{solution}
+\begin{align*}
+\begin{split}
+  \E[X] &= (1/36) (2) + (2/36) (3) + (3/36) (4) + (4/36) (5) + (5/36) (6) + (6/36) (7) \\
+        &\quad+ (5/36) (8) + (4/36) (9) + (3/36) (10) + (2/36) (11) + (1/36) (12)
+\end{split} \\
+        &= 7. \\
+\begin{split}
+  \var[X] &= (1/36) (2-7)^2 + (2/36) (3-7)^2 + (3/36) (4-7)^2 + (4/36) (5-7)^2
+           + (5/36) (6-7)^2 \\
+        &\quad+ (6/36) (7-7)^2 + (5/36) (8-7)^2 + (4/36) (9-7)^2 + (3/36) (10-7)^2 \\
+        &\quad\quad+ (2/36) (11-7)^2 + (1/36) (12-7)^2
+\end{split} \\
+        &= \frac{210}{36} \\
+        &= 5.833.
+\end{align*}
+\end{solution}
+
+\item The distribution of $X$ would look somewhat bell-shaped. (This is not a coincidence. The more
+dice you toss, the closer the distribution of the sum comes to a normal
+distribution. More on this later in the course.) For now, let's see how well
+the empirical rule works. Show that the probability that $X$ is within 
+$E(X) \pm \mathrm{sd}(X)$ is $24/36=0.667$.  
+Show that the probability that $X$ is within $E(X) \pm 2\mathrm{sd}(X)$ is $34/36=0.944$. 
+\begin{solution}
+We have that
+\begin{align*}
+  \mu &= E[X] = 7 \\
+  \sigma &= \sqrt{\var(X)} 
+          = \sqrt{210/36}
+          = 2.415.
+\end{align*}
+We can compute the $z$ scores for the different values of $x$ using the
+formula $z = (x - \mu) / \sigma$.
+
+\begin{center}
+\begin{tabular}{c|ccccccccccc}
+$x$ & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+\hline
+$z$ & $-2.07$ & $-1.66$ & $-1.24$ & $-0.83$ & $-0.41$ & $0.00$ & $0.41$ & $0.83$ & $1.24$ & $1.66$ & $2.07$
+\end{tabular}
+\end{center}
+
+With this table, we can see that
+\begin{align*}
+  P(-1 < Z < 1)
+    &= P(X=5) + P(X=6) + P(X=7) + P(X=8) + P(X=9) \\
+    &= \tfrac{4}{36} + \tfrac{5}{36} + \tfrac{6}{36} + \tfrac{5}{36} + \tfrac{4}{36} \\
+    &= \tfrac{24}{36} \\
+    &= 0.6667. \\
+\end{align*}
+Also,
+\begin{align*}
+  P(-2 < Z < 2)
+    &= 1 - \{ P(X=2) + P(X=12) \} \\
+    &= 1 - (\tfrac{1}{36} + \tfrac{1}{36}) \\
+    &= \tfrac{34}{36} \\
+    &= 0.9444.
+\end{align*}
+
+
+\end{solution}
+
+\end{enumerate}
+
+\end{problem}
+
+
+
+
+\end{document}
+
+

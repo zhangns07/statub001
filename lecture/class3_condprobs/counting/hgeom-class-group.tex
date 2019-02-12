@@ -1,0 +1,20 @@
+\question There are 70 students in enrolled in a course: 40 freshman, 20
+sophomores, and 10 juniors.  If you randomly select a group of 4 students,
+what is the probability of getting all freshman?
+
+
+\begin{solution}
+Let $X$ be the number of freshmen in the group.  This is a
+hypergeometric random variable with $n = 4$ elements in the sample, $N = 70$
+elements in the population, and $r = 40$ success elements in the population.
+Therefore,
+\[
+  P(X = 4)
+    = \frac{\binom{r}{4} \binom{N - r}{n - 4}}{\binom{N}{n}}
+    = \frac{\binom{40}{4} \binom{30}{0}}{\binom{70}{4}}
+    \approx .010.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+

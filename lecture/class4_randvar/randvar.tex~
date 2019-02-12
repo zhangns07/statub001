@@ -1,0 +1,724 @@
+\documentclass[11pt]{exam}
+
+\makeatletter
+\newcommand{\course}[1]{\def\@course{#1}}
+\makeatother
+\newcommand{\ignore}[1]{}
+\makeatletter
+\pagestyle{headandfoot}
+\firstpageheader{}{\large \textbf{\@title \ifprintanswers ~-- Solutions \else \fi} \\ \@course}{}
+\makeatother
+
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{enumitem}
+
+\DeclareGraphicsExtensions{.png,.pdf}
+
+
+\DeclareMathOperator*{\Prob}{P}
+\renewcommand{\Pr}{\Prob}
+\DeclareMathOperator*{\E}{E}
+\DeclareMathOperator*{\var}{var}
+\DeclareMathOperator*{\sd}{sd}
+
+
+\title{Random Variables}
+\course{STAT-UB.0001 -- Statistics for Business Control}
+
+\begin{document}
+
+\begin{questions}
+
+\fullwidth{\section*{Permutations and Combinations}}
+
+%\question Suppose we pick 4 balls out of an urn with 12 red balls and 8 black
+%balls.  What is the probability of $B = \text{``We get two balls of each
+%color''}$?
+%
+%\begin{solution}
+%The number of ways to pick 4 balls out of 20 is $\binom{20}{4}$.
+%
+%We use the multiplication rule as to count the number of ways to pick two
+%balls of each color.  The sequence of experiments is (1) pick two red balls
+%from the $12$, then (2) pick two black balls from the $8$.  There are
+%$\binom{12}{2}$ ways to perform the first experiment, and $\binom{8}{2}$ to
+%perform the second experiment, so there are $\binom{12}{2} \binom{8}{2}$
+%total.
+%
+%Finally,
+%\begin{align*}
+%  P(B) &=
+%    \frac{\#\{\text{picks with two balls of each color}\}}
+%         {\#\{\text{picks with four balls\}}} \\
+%       &= \frac{\binom{12}{2} \binom{8}{2}}{\binom{20}{4}}
+%\end{align*}
+%\end{solution}
+%
+%\vspace{\stretch{3}}
+%
+%\ifprintanswers\else\newpage\fi
+
+
+\question \textbf{New York state lotto.}  You pick six of the numbers 1 through
+54, and then in a televised drawing six of the numbers are selected.  If all
+six of your numbers are selected then you win a share of the first place
+prize.  If five or four of your numbers are selected you win a share of the
+second or third prize.
+
+\begin{parts}
+\part How many ways are there to select 6 numbers for the lotto ticket?
+
+\begin{solution}
+\[
+  \binom{54}{6}
+  = \frac{54 \cdot 53 \cdot 52 \cdot 51 \cdot 50 \cdot 49}
+         {6 \cdot 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1}
+  = 25827165
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part How many ways are there to select a first prize number?
+
+\begin{solution}
+\[
+  1
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part What is the probability of selecting a first prize number?
+
+
+\begin{solution}
+\begin{align*}
+   P(\text{first prize})
+     &= \frac{\#\{\text{lotto tickets that match all six numbers}\}}
+         {\#\{\text{lotto tickets\}}} \\
+     &= \frac{1}{\binom{54}{6}} \\
+     &= 1 / 25827165 \\
+     &= 0.000004\%
+\end{align*}
+\end{solution}
+\vspace{\stretch{1}}
+
+\part What is the probability of selecting a second prize number?
+\begin{solution}
+How many lotto tickets have five matches and one mismatch from our pick?
+Consider the following sequence of experiments for enumerating all such
+possibilities: (1) pick $5$ numbers out of our six to match; (2) pick $1$
+number to mismatch.  There are $\binom{6}{5}$ possible outcomes for experiment
+(1), and $\binom{48}{1}$ possible outcomes for experiment (2).  (Note that $48
+= 54 - 6$; there are $48$ numbers in the range 1--54 which aren't on our lotto
+ticket.)  Thus,
+\begin{align*}
+   P(\text{second prize})
+    &= \frac{\#\{\text{lotto tickets that match exactly five numbers}\}}
+         {\#\{\text{lotto tickets\}}} \\
+     &= \frac{\binom{6}{5}\binom{48}{1}}{\binom{54}{6}}.
+\end{align*}
+
+The computation for third prize is similar to the computation for second
+prize:
+
+\begin{align*}
+   P(\text{third prize})
+    &= \frac{\#\{\text{lotto tickets that match exactly four numbers}\}}
+         {\#\{\text{lotto tickets\}}} \\
+     &= \frac{\binom{6}{4}\binom{48}{2}}{\binom{54}{6}}.
+\end{align*}
+\end{solution}
+
+
+\end{parts}
+
+
+\vspace{\stretch{1}}
+\newpage
+
+\question \textbf{Quality assurance.}  Suppose we have a batch of $100$ light bulbs,
+which contains $5$ defective bulbs.  If we pick $10$ for testing, what is the
+probability that no bulbs in the sample are defective?  We can answer this
+question in three steps.
+
+\begin{parts}
+
+\part How many ways are there of picking $10$ bulbs for testing out of $100$?
+
+\begin{solution}
+\[
+  \binom{100}{10}
+\]
+\end{solution}
+
+\vspace{\stretch{0.3}}
+
+\part How many ways are there of picking $10$ non-defective bulbs?
+
+\begin{solution}
+\[
+  \binom{95}{10}
+\]
+\end{solution}
+
+\vspace{\stretch{0.3}}
+
+\part What is the probability that there are no defective bulbs in your sample
+of $10$?
+
+\begin{solution}
+\begin{align*}
+  P(\text{no defects in sample})
+    &= \frac{\binom{95}{10}}{\binom{100}{10}} \\
+    &= 58\%.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{0.3}}
+
+\end{parts}
+
+
+\question \textbf{The Birthday Problem.} A class has 20 students.  What is the probability that at least
+two students have the same birthday?  Assume that each person in the class was
+assigned a random birthday between January 1 and December 31.
+
+\begin{solution}
+Assume that everyone in the class is randomly assigned a birthday, which
+corresponds to number between 1 and 365 representing the day of the year.
+It turns out to be much easier to compute the probability using the complement
+rule, as
+\[
+  \Pr(\text{at least 2 people have the same birthday})
+  = 1 - \Pr(\text{all 20 birthdays are different}).
+\]
+
+We use counting rules to compute the probability that all 20 birthdays are different. 
+We first compute the size of sample space. That is $365^{20}$.
+
+Next, we compute the number of ways to assign 365 birthdays to 20 students, such that no two students can have the same birthday.
+That is $P(365,20)=\frac{365!}{345!}$.
+
+Thus the probability of all 20 birthdays are different is
+$$\frac{P(365,20)}{365^{20}} = \frac{365}{365}\cdot \frac{364}{365}\cdot\frac{363}{365}\cdots \frac{365-19}{365}.$$
+
+\end{solution}
+\vspace{\stretch{1}}
+
+
+\newpage
+\fullwidth{\section*{Probability Distribution Function and Expectation}}
+
+\question \label{ques:rv-coinflip-game} Consider the following game:
+\begin{enumerate}
+\item You pay \$6 to flip a coin.
+\item If the coin lands heads, you get \$10; otherwise, you get nothing.
+\end{enumerate}
+
+\begin{parts}
+
+\part Would you play this game?  Why or why not?
+
+\begin{solution}
+It will usually be beneficial to play the game when our expected winnings are
+positive.  In this situation, if we play the game many times, then in the long
+run we will make a profit.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part What is the random experiment involved in the game?  What are the sample
+space?  What are the probabilities of the sample points?
+
+\begin{solution}
+The random experiment is the coin flip.  
+The sample points for  the coin flip are H and T; each of
+these has probability $\frac{1}{2}$.  
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part \label{part:rv-coinflip-game-pdf} Let $W$ be the random variable equal
+to the amount of money you win from playing the game.  If you lose money, $W$
+will be negative.  Find the value of $W$ for each of the sample points.
+
+\begin{solution}
+
+The values of the random variable
+corresponding to the sample points are as follow:
+
+\begin{center}
+\begin{tabular}{cr}
+\toprule
+Outcome & $W$ \\
+\midrule
+H & 4 \\
+T & -6 \\
+\bottomrule \\
+\end{tabular}
+\end{center}
+
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part Describe $W$ in terms of its probability distribution function (PDF).
+
+\begin{solution}
+The PDF of $W$ is given by the table:
+
+\begin{center}
+\begin{tabular}{c|rr}
+$w$ & -6 & 4 \\
+\hline
+$p(w)$ & 0.5 & 0.5 
+\end{tabular}
+\end{center}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part \label{part:rv-coinflip-game-expect} What are your expected winnings?
+That is, what is $\mu$, the expectation of $W$?
+
+\begin{solution}
+
+Using the PDF computed in part~(\ref{part:rv-coinflip-game-pdf}), the expected value
+of $W$ is
+\begin{align*}
+  \mu
+  &= (.5)(-6) + (.5)(4) \\
+  &= -1.
+\end{align*}
+On averate, we lose \$1 every time we play the game.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+\newpage
+
+\question \label{ques:rv-2coins-outcomes}
+Suppose you flip two coins.  Let $X$ be the random variable which counts
+the number of heads on the two tosses.  
+
+\begin{parts}
+
+\part List all of the sample points of the experiment, along with the
+corresponding values of $X$.
+
+\begin{solution}
+\begin{center}
+\begin{tabular}{cr}
+\toprule
+Outcome & $X$ \\
+\midrule
+HH & 2 \\
+HT & 1 \\
+TH & 1 \\
+TT & 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part \label{part:rv-2coins-pdf} Compute the probability distribution function of $X$.
+
+\begin{solution}
+\begin{center}
+\begin{tabular}{c|ccc}
+$x$ & 0 & 1 & 2 \\
+\hline
+$p(x)$
+& $\frac{1}{4}$ 
+& $\frac{2}{4}$ 
+& $\frac{1}{4}$ 
+\end{tabular}
+\end{center}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part Compute the expectation of $X$.
+
+\begin{solution}
+Using the PDF we computed in part~(\ref{part:rv-2coins-pdf}), the expectation
+of $X$ is
+\begin{align*}
+\E(X)
+  &= (\tfrac{1}{4}) (0) + (\tfrac{2}{4}) (1) + (\tfrac{1}{4}) (2) \\
+  &= 1.
+\end{align*}
+\end{solution}
+\vspace{\stretch{1}}
+
+
+\part What is the interpretation of the expectation of $X$?
+
+\begin{solution}
+If we were to repeat the experiment many times, getting a different value of
+$X$ each time, then the average value of $X$ will be close to $1$.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+
+\question 
+\label{ques:rv-coffee}
+Let $X$ be a random variable describing the number of cups of coffee a
+randomly-chosen member of the class drinks on a typical day.  There is a
+22\% chance that the student has one cup, a 16\% chance that the student has
+two cups, a 16\% chance that the student has three cups, an 11\% chance that
+the student has four cups, and a 3\% chance that the student has five cups.
+Also, there is a 32\% chance that the student doesn't drink any coffee.
+
+\begin{parts}
+
+\part Let $p(x)$ be the probability distribution function of $X$.  Fill in the
+following table:
+\begin{center}
+\begin{tabular}{c|cccccc}
+  $x$ & 0 & 1 & 2 & 3 & 4 & 5 \\
+\hline
+$p(x)$ & \phantom{.32} & \phantom{.22} & \phantom{.16} & \phantom{.16} & \phantom{.11} & \phantom{.03}
+\end{tabular}
+\end{center}
+
+\begin{solution}
+\begin{center}
+\begin{tabular}{c|cccccc}
+  $x$ & 0 & 1 & 2 & 3 & 4 & 5 \\
+\hline
+$p(x)$ & .32 & .22 & .16 & .16 & .11 & .03
+\end{tabular}
+\end{center}
+\end{solution}
+
+\vspace{2\baselineskip}
+
+\part Find $\E(X)$, the expectation of $X$.
+
+\begin{solution}
+\begin{align*}
+  \E(X)
+  &= (.32) (0) + (.22) (1) + (.16) (2) + (.16) (3) + (.11) (4) + (.03) (5)
+  &= 1.61.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part What is the interpretation of the expectation of $X$?
+
+\begin{solution}
+The long-run sample mean.  If we performed the random experiment upon which
+$X$ is measured many times, getting a different value of $X$ each time, then
+the sample mean would be very close to the expectation of $X$.
+In particular, if every day we sample a student from the class and measure how
+many cups of coffee they drink, then after awhile, the average number of cups
+of coffee will be close to the expectation (1.61).
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+\newpage
+\fullwidth{\section*{Variance and Standard Deviation}}
+
+\question This is a continuation of problem~\ref{ques:rv-coffee}.
+
+\begin{parts}
+
+\part Find $\var(X)$ and $\sd(X)$, the variance and standard deviation of $X$,
+the number of cups of coffee that a random student from the class drinks on a
+typical day.
+
+
+\begin{solution}
+\begin{align*}
+\begin{split}
+  \var(X)
+  &= (.32) (0-1.61)^2 + (.22) (1-1.61)^2 + (.16) (2-1.61)^2 + (.16) (3-1.61)^2
+  \\
+  &\quad+ (.11) (4-1.61)^2 + (.03) (5-1.61)^2
+\end{split} \\
+  &= 2.2179
+\end{align*}
+
+The standard deviation of $X$ is given by
+\[
+  \sd(X) = \sqrt{\var(X)} = \sqrt{2.2179} = 1.48.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part What is the interpretation of the standard deviation of $X$?
+
+\begin{solution}
+The long-run sample standard deviation.  If we performed the random experiment upon which
+$X$ is measured many times, getting a different value of $X$ each time, then
+the sample standard deviation would be very close to the standard deviation of
+$X$.  
+In particular, if every day we sample a student from the class and measure how
+many cups of coffee they drink, then after awhile, the sample standard
+deviation of the number of cups of coffee will be close to the 1.48.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\end{parts}
+
+
+
+\question Consider the following game:
+\begin{enumerate}
+\item You pay \$6 to pick a card from a standard 52-card deck.
+\item If the card is a diamond ($\diamondsuit$), you get \$22; if the card is a
+heart ($\heartsuit$), you get \$6; otherwise, you get nothing.
+\end{enumerate}
+Perform the following calculations to decide whether or not you would play
+this game.
+
+\begin{parts}
+
+\part \label{part:rv-cardsuit-game-pdf} Let $W$ be the random variable equal
+to the amount of money you win from playing the game.  If you lose money, $W$
+will be negative.  Find the PDF of $W$.
+
+\begin{solution}
+The sample points corresponding to the suit of the card are $\spadesuit$,
+$\heartsuit$, $\clubsuit$, and $\diamondsuit$; each of these has probability
+$\tfrac{1}{4}$.  The values of the random variable $W$
+corresponding to the sample points are as follow:
+
+\begin{center}
+\begin{tabular}{cr}
+\toprule
+Outcome & $W$ \\
+\midrule
+$\spadesuit$ & -6 \\
+$\heartsuit$ & 0 \\
+$\clubsuit$ & -6 \\
+$\diamondsuit$ & 16 \\
+\bottomrule \\
+\end{tabular}
+\end{center}
+
+Thus, the PDF of $W$ is given by the table:
+
+\begin{center}
+\begin{tabular}{c|rrr}
+$w$ & -6 & 0 & 16 \\
+\hline
+$p(w)$ & 0.50 & 0.25  & 0.25
+\end{tabular}
+\end{center}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part \label{part:rv-cardsuit-game-expect} What are your expected winnings?
+That is, what is $\mu$, the expectation of $W$?
+
+\begin{solution}
+
+Using the PDF computed in part~(\ref{part:rv-cardsuit-game-pdf}), the expected value
+of $W$ is
+\begin{align*}
+  \mu
+  &= (.50)(-6) + (.25)(0) + (.25)(16) \\
+  &= 1.
+\end{align*}
+On average, we win \$1 every time we play the game.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part What is the standard deviation of $W$?
+
+\begin{solution}
+
+Using the PDF computed in part~(\ref{part:rv-cardsuit-game-pdf}), and the expected value
+computed in part~(\ref{part:rv-cardsuit-game-expect}), we compute the variance
+of $W$ as
+\begin{align*}
+  \sigma^2
+  &= (.50)(-6 - 1)^2 + (.25)(0 - 1)^2 + (.25)(16 - 1)^2 \\
+  &= 81.
+\end{align*}
+Thus, the standard deviation of $W$ is
+\[
+  \sigma = \sqrt{81} = 9.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part What are the interpretations of the expectation and standard deviation
+of $W$?
+
+\begin{solution}
+If we played the game many many times, then the average of our winnings over
+all times we played would be close to the \$1, and the standard
+deviations of our winnings over all times we played would be close to \$9.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\end{parts}
+
+\newpage
+
+\fullwidth{\section*{Properties of Expectation}}
+
+\question \textbf{Affine Transformations.}
+Let $X$ be a random variable with expectation $\mu_X = 2$.  What is the
+expectation of $5 X + 2$?
+
+\begin{solution}
+\[
+  5 \mu_X + 2 = 12.
+\]
+\end{solution}
+\vspace{\stretch{1}}
+
+
+\question \textbf{Sums of Random Variables.}
+Let $X$ and $Y$ be random variables with $\mu_X = 1$, 
+$\mu_Y = -5$.  What is $\E(X + Y)$?
+
+\begin{solution}
+\[
+  \E(X + Y) = \mu_X + \mu_Y = 1 + (-5) = -4.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question Let $X$ and $Y$ be random variables with $\mu_X = -2$, $\mu_Y = 3$.
+
+\begin{parts}
+
+\part Find the expectation of $-3X + 2$.
+
+\begin{solution}
+\[
+  \E(-3X + 2) = -3 \mu_X + 2 = -3 (-2) + 2 = 8.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part Find the expectation of $X + Y$.
+
+\begin{solution}
+\[
+  \E(X + Y) = \mu_X + \mu_Y = 1.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+\question You invite four people to go out to dinner on Friday night.  The
+attendance probabilities for the four potential guests are 50\%, 20\%, 30\%, and 90\%.
+
+\begin{parts}
+\part Find the expected number of guests.
+
+\begin{solution}
+Let $X$ be the number of guests.  Then, $X$ can be written as
+\[
+  X = Y_1 + Y_2 + Y_3 + Y_4,
+\]
+where
+\[
+  Y_i
+  =
+  \begin{cases}
+    1 &\text{if guest $i$ attends,} \\
+    0 &\text{otherwise.}
+  \end{cases}
+\]
+Then, $\E[Y_1] = .50$, $\E[Y_2] = .20$, $\E[Y_3 = .30]$, and $\E[Y_4] = .90$,
+so
+\begin{align*}
+  \E[X]
+    &= \E[Y_1 + Y_2 + Y_3 + Y_4] \\
+    &= \E[Y_1] + \E[Y_2] + \E[Y_3] + \E[Y_4] \\
+    &= .50 + .20 + .30 + .90 \\
+    &= 1.9.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part \label{part:expected-dinner-cost} The dinner will be a \emph{prix fixe}
+meal, costing \$50 per person.  What is the expected total cost for yourself
+and your guests?
+
+\begin{solution}
+The total cost is $C = 50 + 50 X$.  Thus,
+\begin{align*}
+  \E[C] &= \E[50 + 50 X] \\
+        &= 50 + 50 \E[X] \\
+        &= 50 + 50 (1.9) \\
+        &= 145.
+\end{align*}
+The expected total cost is \$145.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part What is the interpretation of your answer to part~(\ref{part:expected-dinner-cost})?
+
+\begin{solution}
+If there were many similar nights with the same circumstances, then the
+average cost of all of the dinners would be \$145.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+
+\end{questions}
+
+\end{document}
+

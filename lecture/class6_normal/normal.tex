@@ -1,0 +1,431 @@
+\documentclass[11pt]{exam}
+
+\makeatletter
+\newcommand{\course}[1]{\def\@course{#1}}
+\makeatother
+
+\makeatletter
+\pagestyle{headandfoot}
+\firstpageheader{}{\large \textbf{\@title \ifprintanswers ~-- Solutions \else \fi} \\ \@course}{}
+\makeatother
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subfig}
+
+\DeclareGraphicsExtensions{.png,.pdf}
+
+
+\DeclareMathOperator*{\Prob}{P}
+\renewcommand{\Pr}{\Prob}
+\DeclareMathOperator*{\E}{E}
+\DeclareMathOperator*{\var}{var}
+\DeclareMathOperator*{\sd}{sd}
+
+
+\title{The Normal Model}
+\course{STAT-UB.0001 -- Statistics for Business Control}
+
+
+\begin{document}
+\begin{questions}
+
+  
+\fullwidth{\section*{Standard Normal Random Variables}}
+
+
+\question  Suppose $Z$ is a standard normal random variable.  What is $P(Z \leq
+1.2)$?
+
+\begin{solution}
+\[
+  P(Z \leq 1.2) = \Phi(1.2) = .8849.
+\]
+We have computed $\Phi(z)$ by using a normal table.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question  Suppose $Z$ is a standard normal random variable.  What is $P(Z \leq
+-2.4)$?
+
+\begin{solution}
+\[
+  P(Z \leq -2.4) = \Phi(-2.4) = .008198.
+\]
+We have computed $\Phi(z)$ by using a normal table.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question Suppose $Z$ is a standard normal random variable.  What is $P(Z \leq
+-0.4)$
+
+\begin{solution}
+\[
+  P(Z \leq -0.4) = \Phi(-0.4) = .3446.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question Suppose $Z$ is a standard normal random variable.  What is $P(-0.4 \leq
+Z \leq 1.2)$?
+
+\begin{solution}
+\begin{align*}
+  P(-0.4 \leq Z \leq 1.2) &= P(Z \leq 1.2) - P(Z \leq -0.4) \\
+  	&= \Phi(1.2) - \Phi(-0.4) \\
+	&= .8849 - .3446 \\
+	&= .5403.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question Suppose $Z$ is a standard normal random variable.  What is $P(Z > 2)$?
+
+\begin{solution}
+\begin{align*}
+  P(Z > 2) &= 1 - P(Z \leq 2) \\
+  	      &= 1 - \Phi(2) \\
+	      &= 1 - .97725 \\
+	      &= 0.02275
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\newpage
+
+\fullwidth{\section*{Normal Cumulative Distribution Function (CDF)}}
+
+
+\question The dressed weights of Excelsior Chickens are approximately normally
+distributed with mean 3.20 pounds and standard deviation 0.40 pound.  About
+what proportion of the chickens have dressed weights greater than 3.60 pounds?
+
+\begin{solution}
+Let $X$ be the weight of a typical chicken in pounds; this is normally distributed with
+mean $\mu = 3.20$ and standard deviation $\sigma = 0.40$.  The proportion of
+chickens with dressed weights greater than 3.60 is equal to the probability
+that $X$ is greater than 3.60 pounds.
+
+Define
+$Z = (X - \mu)/\sigma$, a standard normal random variable.  Then,
+\begin{align*}
+  \Pr(X > 3.60)
+    &= \Pr\Big(\frac{X - \mu}{\sigma} > \frac{3.60 - \mu}{\sigma}\Big) \\
+    &= \Pr\Big(Z > \frac{3.60 - 3.20}{0.40}\Big) \\
+    &= \Pr(Z > 1) \\
+    &= 1 - \Pr(Z \leq 1) \\
+    &= 1 - \Phi(1) \\
+    &= 1 - .8413 \\
+    &= .1587.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+
+\ifprintanswers\newpage\fi
+
+\question Suppose that an automobile muffler is designed so that its lifetime (in
+months) is approximately normally distributed with mean 26 months and standard
+deviation 4 months.  The manufacturer has decided to use a marketing strategy
+in which the muffler is covered by warranty for 18 months.  Approximately what
+proportion of the mufflers will fail before the warranty expires?
+
+\begin{solution}
+Let $X$ be the lifetime of a typical muffler in months; this is normally distributed
+with mean $\mu = 26$ and standard deviation $\sigma = 4$.  The muffler will
+fail before the warranty expires if and only if $X < 18$.  Thus,
+the proportion of the mufflers that fail before the warranty expires is
+equal to the probability that $X$ is less than 18.  Define $Z = (X -
+\mu)/\sigma$, a standard normal random variable.  Then,
+
+\begin{align*}
+  \Pr(X < 18) &= P\Big(\frac{X - \mu}{\sigma} < \frac{18-26}{4}\Big) \\
+  	&= P(Z < -2) \\
+	&= \Phi(-2) \\
+	&= .02275.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+\newpage
+
+\question Suppose that the daily demand for change (meaning coins) in a
+particular store is approximately normally distributed with mean \$800.00 and
+standard deviation \$60.00.  What is the probability that, on any particular
+day, the demand for change will be below \$600?
+
+\begin{solution}
+Let $X$ be the demain for change on a particular day (in dollars); this is a
+normal random variable with mean $\mu = 800$ and standard deviation $\sigma =
+60$.  Now
+\[
+  \Pr(X < 600) = \Pr\left(\frac{X - \mu}{\sigma} < \frac{600 - 800}{60}\right)
+  = \Phi(-3.3) = .0004834.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+
+
+\fullwidth{\section*{Inverse Normal CDF}}
+
+
+
+
+\question Suppose that the daily demand for change (meaning coins) in a
+particular store is approximately normally distributed with mean \$800.00 and
+standard deviation \$60.00.  Find the amount $M$ of change to keep on hand if
+one wishes, with certainty 99\%, to have enough change.  That is, find $M$ so
+that $\Pr(X \leq M) = 0.99$.
+
+\begin{solution}
+We have
+\[
+  .99 = P(X \leq M) = P\left(\frac{X - \mu}{\sigma} \leq \frac{M - 800}{60}\right) =
+  \Phi\left(\frac{M - 800}{60}\right).
+\]
+Thus,
+\[
+  \frac{M - 800}{60} = \Phi^{-1}(.99).
+\]
+Consulting the normal inverse CDF table, we see that $\Phi(2.3263) = .99$ and
+We take $\Phi^{-1}(.99) = 2.3263$, so that
+\[
+  M = 800 + 60 \times 2.3263 = 939.578.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+\newpage
+
+\question Suppose that $Z$ is a standard normal random variable.  %\\
+Find the value $w$ so that $\Pr(|Z| \leq w) = 0.60$.
+
+\begin{solution}
+The problem is asking for $w$ such that $\Pr(-w \leq Z \leq w) = 0.60$.  We
+can look up this value directly, in the fourth column, getting
+$w = .8416$.
+
+For an alternative solution, note that
+\[
+  \Pr(Z < -w) + \Pr(-w \leq Z \leq w) + P(Z > w) = 1.
+\]
+Also, $\Pr(Z < -w) = \Pr(Z > w)$ (draw a picture if this is not obvious to you).
+In this case, we must have that $\Pr(Z < -w) = 0.20$.  Therefore, $\Pr(Z < w) =
+0.80$.
+
+Now, $\Phi(w) = 0.80$.  The normal CDF table tells us that $\Phi(0.8416) =
+0.80$; we take $w = 0.8416$.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+%\question Suppose that the latent load charge threshold for a population of
+%investors is approximately normally distributed with mean 3.2 percentage
+%points and standard deviation 0.8 of a percentage point.  Find the lower 10\%
+%point.  That is, find the load rate $A$ so that, with probability 90\%, an
+%investor will happily tolerate rate $A$.
+%
+%{\addtolength{\leftskip}{2.5em}
+%
+%Note: Each person has an upper limit for the load charge; if Dave's limit is 3.8\%,
+%then he would not object to paying 3.1\%.  We can observe how any individual
+%will behave at any specified rate, but we can't observe the individual's upper
+%limit.  For this reason, we call the limit \emph{latent}.
+%
+%}
+
+
+\question A machine that dispenses corn flakes into packages provides amounts that are
+approximately normally distributed with mean weight 20 ounces and standard
+deviation 0.6 ounce.  Suppose that the weights and measures law under which
+you must operate allows you to have only 5\% of your packages under the weight
+stated on the package.  What weight should you print on the package?
+
+\begin{solution}
+Let $X$ be the weight in ounces of a typical package; this is approximately
+normally distributed with mean $\mu = 20$ and standard deviation $\sigma =
+0.6$.  We seek a printed weight, $w$, such that $P(X < w) = .05$.  Define
+$Z = (X - \mu)/\sigma$, a standard normal random variable.  We have
+the following relation:
+\[
+  .05
+  = \Pr(X < w) 
+  = \Pr\left(\frac{X - \mu}{\sigma} < \frac{w - 20}{0.6}\right)
+  = \Pr\left(Z < \frac{w - 20}{0.6}\right)
+  = \Phi\left(\frac{w - 20}{0.6}\right).
+\]
+Thus,
+\[
+  \frac{w - 20}{0.6} = \Phi^{-1}(.05).
+\]
+With a normal table, we compute $\Phi(-1.6449) = 0.05$.
+Finally,
+\[
+  \frac{w - 20}{0.6} = -1.6449,
+\]
+so $w = 20 - 0.6 \times 1.6449 = 19.01306$.  We would probably round this to
+$19$ and print ``19 ounces'' on the box.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+% \newpage
+% 
+% \fullwidth{\section*{More examples}}
+% 
+% \question An industrial process produces five-liter cans of paint thinner.  The
+% history of this process indicates a mean fill of 5.02 liters, with a standard
+% deviation of 0.21 liter.  The quality control experts watch this process and
+% select a can for inspection every hour.  This process runs for 12 hours every
+% day.  The exact contents of the selected can are then determined.  The process
+% is said to be ``in control'' if the volume is within the range $5.02 \pm a(0.21)$.
+% 
+% \begin{parts}
+% 
+% \part Suppose that $a = 2.0$.  About how often \emph{by chance alone}, will a
+% can be declared out of control?
+% 
+% \begin{solution}
+% Let $X$ be the volume (in liters) of a typical can; this is approximately a normal random
+% variable with mean $\mu = 5.02$ and standard deviation $\sigma = 0.21$.  The
+% proportion of out-of-control cans is equal to the probability that $X$ is
+% outside the range $5.02 \pm a(0.21)$.
+% 
+% Note that $X$ is in control when $5.02 - a (0.21) \leq X \leq 5.02 + a
+% (0.21)$.  Thus,
+% \begin{align*}
+%   \Pr(\text{$X$ is out} &\text{ of control}) \\
+%     &= 1 - \Pr(\text{$X$ is in conrol}) \\
+%     &= 1 - \Pr\big(5.02 - a (0.21) \leq X \leq 5.02 + a (0.21)\big) \\
+%     &= 1 - \Pr\left(\frac{\big(5.02 - a (0.21)\big) - \mu}{\sigma}
+%                     \leq \frac{X - \mu}{\sigma}
+%                     \leq \frac{\big(5.02 + a (0.21)\big) - \mu}{\sigma}\right) \\
+%     &= 1 - \Pr(-a \leq Z \leq a) \\
+% \end{align*}
+% where $Z = (X - \mu)/ \sigma$, a standard normal random variable.
+% We compute
+% \[
+%   \Pr(-a \leq Z \leq a) = \Phi(a) - \Phi(-a).
+% \]
+% Thus, when $a = 2$,
+% \[
+%   \Pr(\text{$X$ is out of control}) =
+%     1 - (.9772 - .0228) = 0.0456.
+% \]
+% \end{solution}
+% 
+% \vspace{\stretch{1}}
+%   
+% 
+% \part Repeat this for $a = 2.5$ and $a = 3.0$.
+% 
+% \begin{solution}
+% We can use the same logic as above.  For $a = 2.5$,
+% \[
+%   P(\text{$X$ is out of control}) =
+%     1 - (.9938 - .0062) = .0124.
+% \]
+% For $a = 3.0$,
+% \[
+%   P(\text{$X$ is out of control}) =
+%     1 - (.9987 - .0013) = .0026.
+% \]
+% \end{solution}
+% 
+% \vspace{\stretch{1}}
+% 
+% \end{parts}
+
+
+
+% \question Suppose that an automobile muffler is designed so that its lifetime (in
+% months) is approximately normally distributed with mean 26 months and standard
+% deviation 4 months.  
+% \begin{parts}
+% \part The manufacturer has decided to use a marketing strategy
+% in which the muffler is covered by warranty for 18 months.  Approximately what
+% proportion of the mufflers will fail before the warranty expires?
+% 
+% \begin{solution}
+% Let $X$ be the lifetime of a typical muffler in months; this is normally distributed
+% with mean $\mu = 26$ and standard deviation $\sigma = 4$.  The muffler will
+% fail before the warranty expires if and only if $X < 18$.  Thus,
+% the proportion of the mufflers that fail before the warranty expires is
+% equal to the probability that $X$ is less than 18.  Define $Z = (X -
+% \mu)/\sigma$, a standard normal random variable.  Then,
+% 
+% \begin{align*}
+%   \Pr(X < 18) &= P\Big(\frac{X - \mu}{\sigma} < \frac{18-26}{4}\Big) \\
+%   	&= P(Z < -2) \\
+% 	&= \Phi(-2) \\
+% 	&= .0228.
+% \end{align*}
+% \end{solution}
+% 
+% \vspace{\stretch{1}}
+% 
+% 
+% \part Suppose that the manufacturer in the previous example would like to
+% extend the warranty time to 24 months.  Approximately what proportion of the
+% mufflers will fail before the extended warranty expires?
+% 
+% \begin{solution}
+% This is similar to part (a), but now we need to compute $P(X < 24)$:
+% 
+% \begin{align*}
+%   \Pr(X < 24) &= P\Big(\frac{X - \mu}{\sigma} < \frac{24-26}{4}\Big) \\
+%   	&= P(Z < -0.5) \\
+% 	&= \Phi(-0.5) \\
+% 	&= .3085.
+% \end{align*}
+% \end{solution}
+% 
+% \vspace{\stretch{1}}
+%
+% \part Of all the mufflers
+% that fail under the extended warranty, what proportion of them have failures
+% in the interval $(18 \text{ months}, 24 \text{ months})$?
+% 
+% 
+% \begin{solution}
+% The requested quantity is equal to the probability that $X$ is in the interval
+% $(18, 24)$, \emph{conditional that $X$ is less than $24$}.  Using the
+% definition of conditional probability, we compute
+% \begin{align*}
+%   \Pr(18 < X < 24 \mid X < 24)
+%     &= \frac{\Pr(18 < X < 24 \text{ and } X < 24)}{\Pr(X < 24)} \\
+%     &= \frac{\Pr(18 < X < 24)}{\Pr(X < 24)} \\
+%     &= \frac{\Pr(X < 24) - \Pr(X < 18)}{\Pr(X < 24)} \\
+%     &= \frac{.3085 - .0228}{.3085} \\
+%     &= .9261.
+% \end{align*}
+% \end{solution}
+% 
+% \vspace{\stretch{1}}
+% 
+% \end{parts}
+
+
+
+
+\end{questions}
+
+\end{document}

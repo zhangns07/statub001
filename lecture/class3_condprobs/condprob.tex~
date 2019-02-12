@@ -1,0 +1,712 @@
+\documentclass[11pt]{exam}
+
+\makeatletter
+\newcommand{\course}[1]{\def\@course{#1}}
+\makeatother
+
+\makeatletter
+\pagestyle{headandfoot}
+\firstpageheader{}{\large \textbf{\@title \ifprintanswers ~-- Solutions \else \fi} \\ \@course}{}
+\makeatother
+
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subfig}
+
+\DeclareGraphicsExtensions{.png,.pdf}
+
+
+\DeclareMathOperator*{\Prob}{P}
+\renewcommand{\Pr}{\Prob}
+\DeclareMathOperator*{\E}{E}
+\DeclareMathOperator*{\var}{var}
+\DeclareMathOperator*{\sd}{sd}
+
+
+\title{Conditional Probability and Counting Rules}
+\course{STAT-UB.0001 -- Statistics for Business Control}
+
+\begin{document}
+
+\begin{questions}
+
+\fullwidth{\section*{Independence}}
+\question Suppose that you flip two fair coins.  Let $A = $``the first coin shows
+Heads,'' $B = $ ``The second coin shows Heads.''  Find the probability
+of getting Heads on both coins, i.e.~find $P(A \cap B)$.
+
+\begin{solution}
+The long way to solve this problem is to write out the elementary outcomes and
+their probabilities:
+
+\vspace{1\baselineskip}
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+Outcome & Probability \\
+\midrule
+HH & $\tfrac{1}{4}$ \\
+HT & $\tfrac{1}{4}$ \\
+TH & $\tfrac{1}{4}$ \\
+TT & $\tfrac{1}{4}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{1\baselineskip}
+
+Since $A \cap B = \{ \text{HH} \}$, it follows that
+\[
+  \Pr(A \cap B) = \tfrac{1}{4}.
+\]
+
+We can solve this problem much more expediently using the independence of $A$
+and $B$:
+\begin{align*}
+  \Pr(A \cap B)
+  &= \Pr(A) \Pr(B \mid A) \\
+  &= \Pr(A) \Pr(B) \\
+  &= (\tfrac{1}{2}) (\tfrac{1}{2}) \\
+  &= \tfrac{1}{4}.
+\end{align*}
+
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\question Suppose that you roll two dice.  What is the probability of getting exactly
+one 6?
+
+\begin{solution}
+Define the following events:
+\begin{align*}
+  A &= \text{``6 on the first roll,''} \\
+  B &= \text{``6 on the second roll,''}
+%  C &= \text{``6 on the third roll.''}
+\end{align*}
+Using the shorthand $\bar A = A^c$ and $A\bar B = A \cap \bar B$, the event
+``exactly one 6'' can be written as
+\[
+  \text{``exactly one 6''}
+  = A \bar B \cup \bar A B
+\]
+These events are mutually exclusive, so
+\[
+  \Pr(\text{exactly one 6})
+  = \Pr(A \bar B) 
+  + \Pr(\bar A B)
+\]
+Using the independence of events $A$ and $B$, we get
+\begin{align*}
+  \Pr(A \bar B)  &= \Pr(A) \Pr(\bar B) = (\tfrac{1}{6}) (\tfrac{5}{6}) \\
+  \Pr(\bar A B)  &= \Pr(\bar A) \Pr(B) = (\tfrac{5}{6}) (\tfrac{1}{6})
+\end{align*}
+Note that these two expressions are equal.  Thus,
+\[
+  \Pr(\text{exactly one 6})
+  = 2 \cdot \tfrac{1}{6} \cdot \tfrac{5}{6}
+  \approx 28\%
+\]
+
+
+\end{solution}
+
+\vspace{\stretch{1}}
+%\input{indep-2dice-sum7-red6}
+%\input{indep-2dice-sum8-red6}
+
+\question Suppose that you sell fire insurance policies to two different
+buildings in Manhattan, located in different neighborhoods.  You estimate that
+the buildings have the following chances of being damaged by fire in the next
+10 years: 5\%, and 1\%.  Assume that fire damages to the two buildings
+are independent events.  Compute the probability that exactly one building
+gets damaged by fire in the next 10 years.
+
+\begin{solution}
+  \[
+    (.05) (.99) + (.95) (.01) = .059 = 5.9\%
+  \]
+\end{solution}
+\vspace{\stretch{1}}
+
+\newpage
+
+\question Consider the following experiment. A hat contains two coins:
+\begin{itemize}
+  \item one coin, the ``fair'' coin, has 50\% chance of heads and 50\% chance of tails on
+every flip;
+  \item the other coin, the ``heads'' coin, has heads on both sides, so it
+always lands heads on every flip.
+\end{itemize}
+You reach into the hat and pull out a
+random coin, equally likely to get the fair coin or the heads coin. Then, you
+flip this coin twice.
+
+Define events $A$ and $B$ as
+\begin{align*}
+  A &= \text{the first flip lands heads} \\
+  B &= \text{the second flip lands heads}.
+\end{align*}
+
+\begin{parts}
+
+  \part Based on your intuition, do you think that $A$ and $B$ independent
+    events?
+
+  \vspace{\stretch{1}}
+
+  \part \label{hat-coin-pa} Compute $P(A)$.
+
+  \begin{solution}
+    There are two possibilities with equal chances:
+    either we pick the fair coin, or we pick the heads coin. We know that
+    \[
+      P(\text{fair coin}) = P(\text{heads coin}) = 0.5
+    \]
+    Given the coin, it is easy to compute the probabilities of heads:
+    \begin{align*}
+      P(\text{heads on first flip} \mid \text{fair coin})  &= 0.5 \\
+      P(\text{heads on first flip} \mid \text{heads coin}) &= 1.0
+    \end{align*}
+    Finally,
+    \begin{align*}
+    P(A) &=
+      P(\text{fair coin}) P(\text{heads on first} \mid \text{fair coin}) \\
+      &\qquad+
+      P(\text{heads coin}) P(\text{heads on first} \mid \text{heads coin}) \\
+      &= (0.5) (0.5) + (0.5) (1.0) \\
+      &= 0.75.
+    \end{align*}
+
+  \end{solution}
+
+  \vspace{\stretch{1}}
+
+  \part \label{hat-coin-pab} Compute $P(A \cap B)$.
+    
+  \begin{solution}
+    Given the coin, the first and the second flips are independent:
+    \begin{align*}
+      P(\text{heads on both flips} \mid \text{fair coin})
+        &= P(\text{heads on first flip} \mid \text{fair coin}) \\
+        &\qquad\cdot
+          P(\text{heads on second flip} \mid \text{fair coin}) \\
+        &= (0.5) (0.5) \\
+        &= 0.25.
+    \end{align*}
+    Similarly,
+    \[
+      P(\text{heads on both flips} \mid \text{heads coin}) = 1.0.
+    \]
+    Now,
+    \begin{align*}
+    P(A) &=
+      P(\text{fair coin}) P(\text{heads on both} \mid \text{fair coin}) \\
+      &\qquad+
+      P(\text{heads coin}) P(\text{heads on both} \mid \text{heads coin}) \\
+      &= (0.5) (0.25) + (0.5) (1.0) \\
+      &= 0.625.
+    \end{align*}
+  \end{solution}
+
+  \vspace{\stretch{1}}
+
+  \part Use your answers to parts~(\ref{hat-coin-pa}) and~(\ref{hat-coin-pab})
+    to either prove or disprove that $A$ and $B$ are independent.
+
+  \begin{solution}
+    To check for independence, we compare the product $P(A) P(B)$ with
+    $P(A \cap B)$. Noting that $P(A) = P(B)$, we have
+    \begin{align*}
+      P(A) P(B) &= (0.75) (0.75) \\
+                &= 0.5625.
+    \end{align*}
+    Clearly, $P(A) P(B) \neq P(A \cap B)$. Thus, the events are not
+    independent.
+
+    To get some more intuition for what is happening here, note that
+    \begin{align*}
+      P(B) &= 0.75, \\
+      P(B \mid A) &= P(B \cap A) / P(A) \\
+                  &= 0.625 / 0.75 \\
+                  &= 0.833.
+    \end{align*}
+    That is, before performing the experiment, we have a 75\% chance of
+    getting a heads on the second flip. In the middle of the experiment, if
+    we see that the first flip is heads, then we have an 83.3\% chance of
+    getting heads on the next flip. Why is this? After we see event $A$, we
+    gain some information relevant to event $B$, namely that it is more
+    likely we have selected the heads coin.
+  \end{solution}
+
+  \vspace{\stretch{1}}
+
+\end{parts}
+
+\newpage
+
+\fullwidth{\section*{Bayes' Rule}}
+\question Every year in March there is a standardized exam for people who want to
+be licensed sheep herders. It happens that, with probability 0.45, a person
+will pass this exam. In the process of screening people, it turns out that
+among those who passed the exam, 60\% had taken college courses in biology. It
+happens also that 30\% of all those who take the exam had college courses in
+biology. Find the probability that a person with college courses in biology
+will pass the exam.
+
+\begin{solution}
+The information in the problem is
+\begin{align*}
+\Pr(\text{Pass}) &= .45 \\
+\Pr(\text{Bio}) &= .30 \\
+\Pr(\text{Bio} \mid \text{Pass}) &= .60
+\end{align*}
+The problem is asking us to compute the quantity
+\(
+  \Pr(\text{Pass} \mid \text{Bio}).
+\)
+Using Bayes' rule,
+\begin{align*}
+  \Pr(\text{Pass} \mid \text{Bio})
+  &= \Pr(\text{Bio} \mid \text{Pass})
+  \cdot \frac{\Pr(\text{Pass})}{\Pr(\text{Bio})}  \\
+  &= (.60) \cdot \frac{(.45)}{(.30)} \\
+  &= .90.
+\end{align*}
+That is, there is a 90\% chance that a person with college courses in biology
+will pass the exam.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\question Amazon.com maintains a list of all registered customers, along with
+their email addresses.  During July, they sent coupons to 20\% of their
+customers.  They recorded that 5\% of their customers made purchases in July,
+and 40\% of all purchases were made with coupons.  In this problem we will
+compute the proportion of customers sent a coupon in July who made a
+purchase in that month.  For simplicity, we will assume that customers either
+make 0 or 1 purchases in July.
+
+\begin{parts}
+\part Consider a random customer, and define two events:
+\begin{align*}
+  \text{Coupon} &= \text{the customer received a coupon in July}, \\
+  \text{Purchase} &= \text{the customer made a purchase in July}.
+\end{align*}
+Express all percentages given in the problem statement as
+probabilities or conditional probabilities of these two events.
+Example: $\Pr(\text{Coupon}) = 0.20$.
+
+
+\begin{solution}
+The information in the problem is
+\begin{align*}
+\Pr(\text{Coupon}) &= .20 \\
+\Pr(\text{Purchase}) &= .05 \\
+\Pr(\text{Coupon} \mid \text{Purchase}) &= .40
+\end{align*}
+
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part Use Bayes' rule to compute the proportion of custoers sent a
+coupon in July who made a purchase that month.
+
+
+\begin{solution}
+The problem is asking us to compute the quantity
+\(
+  \Pr(\text{Purchase} \mid \text{Coupon}).
+\)
+Using Bayes' rule,
+\begin{align*}
+  \Pr(\text{Purchase} \mid \text{Coupon})
+  &= \Pr(\text{Coupon} \mid \text{Purchase})
+  \cdot \frac{\Pr(\text{Purchase})}{\Pr(\text{Coupon})}  \\
+  &= (.40) \cdot \frac{(.05)}{(.20)} \\
+  &= .10.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+\newpage
+\fullwidth{\section*{The Multiplication Rule}}
+
+\question A man has 4 pair of pants, 6 shirts, 8 pairs of socks, and 3 pairs of
+shoes.  Ignoring the fact that some of the combinations may look ridiculous,
+how many ways can he get dressed?
+
+\begin{solution}
+Using the multiplication rule, there are
+\[
+  4 \cdot 6 \cdot 8 \cdot 3 = 576
+\]
+ways for the man to get dressed.
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question A restaurant offers soup or salad to start, and has 11 entr\'ees to choose
+from, each of which is served with rice, baked potato, or zucchini.   How many
+meals can you have if you can choose to eat one of their 4 desserts or have no
+desert?
+
+\begin{solution}
+\[
+  2 \cdot 11 \cdot 3 \cdot 5 = 330
+\]
+
+Note that there are $5$ choices for the final course (4 desserts or no
+dessert).
+
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question How many answer sheets are possible for a true/false test with 15
+questions?
+
+\begin{solution}
+\[
+  2^{15} = 32768
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+
+\fullwidth{\section*{Permutations}}
+
+
+\question How many ways can 5 people stand in line?
+
+\begin{solution}
+\[
+  5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 5! = 120
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question How many different batting orders are possible for 9 baseball players?
+
+\begin{solution}
+\[
+  9! = 362880
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question How many ways can 8 books be put on a shelf?
+
+\begin{solution}
+\[
+  8! = 40320
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\newpage
+
+\fullwidth{\section*{More Permutations}}
+
+\question Twelve people belong to a club.  How many ways can they pick a
+president, vice-president, secretary, and treasurer?
+
+\begin{solution}
+\[
+  12 \cdot 11 \cdot 10 \cdot 9 = \frac{12!}{8!} = 11880
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question In a horse race the first three finishers are said to win, place, and
+show.  How many finishes are possible for a race with 11 horses?
+
+\begin{solution}
+\[
+  11 \cdot 10 \cdot 9 = \frac{11!}{8!} = 990
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question Five different awards are to be given to a class of 30 students.  How
+many ways can this be done if (a) each student can receive any number of
+awards, (b) each sutent can receive at most one award?
+
+\begin{solution}
+(a) $30^5 = 24300000$ \\
+(b) $30!/(25!) = 30 \cdot 29 \cdot 28 \cdot 27 \cdot 26 = 17100720$
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+
+\fullwidth{\section*{Combinations}}
+
+\question A club has 23 members.  
+
+
+\begin{parts}
+
+\part How many ways can they pick 2 people to be on a
+committee to plan a party?
+
+\begin{solution}
+\[
+  \binom{23}{2} = \frac{23 \cdot 22}{2 \cdot 1} = 253.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part How many ways can they pick 4 people to be on a
+committee to plan a party?
+
+\begin{solution}
+\[
+  \binom{23}{4} = \frac{23 \cdot 22 \cdot 21 \cdot 20}{4 \cdot 3 \cdot 2 \cdot 1} = 8855.
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+\question A restaurant offers 15 possible toppings for its pizza.  How many
+different pizzas with 3 toppings can be ordered?
+
+\begin{solution}
+\[
+  \binom{15}{3} = \frac{15 \cdot 14 \cdot 13}{3 \cdot 2 \cdot 1} = 455
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\question We are going to pick 5 cards out of a deck of 52.  In how many ways
+can this be done?
+
+\begin{solution}
+\[
+  \binom{52}{5}
+  = \frac{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48}{5 \cdot 4 \cdot 3 \cdot 2 \cdot 1}
+  = 2598960.
+\]
+\end{solution}
+
+
+\vspace{\stretch{1}}
+
+\newpage
+
+\fullwidth{\section*{Advanced Problems}}
+
+%\question Suppose we pick 4 balls out of an urn with 12 red balls and 8 black
+%balls.  What is the probability of $B = \text{``We get two balls of each
+%color''}$?
+%
+%\begin{solution}
+%The number of ways to pick 4 balls out of 20 is $\binom{20}{4}$.
+%
+%We use the multiplication rule as to count the number of ways to pick two
+%balls of each color.  The sequence of experiments is (1) pick two red balls
+%from the $12$, then (2) pick two black balls from the $8$.  There are
+%$\binom{12}{2}$ ways to perform the first experiment, and $\binom{8}{2}$ to
+%perform the second experiment, so there are $\binom{12}{2} \binom{8}{2}$
+%total.
+%
+%Finally,
+%\begin{align*}
+%  P(B) &=
+%    \frac{\#\{\text{picks with two balls of each color}\}}
+%         {\#\{\text{picks with four balls\}}} \\
+%       &= \frac{\binom{12}{2} \binom{8}{2}}{\binom{20}{4}}
+%\end{align*}
+%\end{solution}
+%
+%\vspace{\stretch{3}}
+%
+%\ifprintanswers\else\newpage\fi
+
+
+\question \textbf{New York state lotto.}  You pick six of the numbers 1 through
+54, and then in a televised drawing six of the numbers are selected.  If all
+six of your numbers are selected then you win a share of the first place
+prize.  If five or four of your numbers are selected you win a share of the
+second or third prize.
+
+\begin{parts}
+\part How many ways are there to select 6 numbers for the lotto ticket?
+
+\begin{solution}
+\[
+  \binom{54}{6}
+  = \frac{54 \cdot 53 \cdot 52 \cdot 51 \cdot 50 \cdot 49}
+         {6 \cdot 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1}
+  = 25827165
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part How many ways are there to select a first prize number?
+
+\begin{solution}
+\[
+  1
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+
+\part What is the probability of selecting a first prize number?
+
+
+\begin{solution}
+\begin{align*}
+   P(\text{first prize})
+     &= \frac{\#\{\text{lotto tickets that match all six numbers}\}}
+         {\#\{\text{lotto tickets\}}} \\
+     &= \frac{1}{\binom{54}{6}} \\
+     &= 1 / 25827165 \\
+     &= 0.000004\%
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+%How many lotto tickets have five matches and one mismatch from our pick?
+%Consider the following sequence of experiments for enumerating all such
+%possibilities: (1) pick $5$ numbers out of our six to match; (2) pick $1$
+%number to mismatch.  There are $\binom{6}{5}$ possible outcomes for experiment
+%(1), and $\binom{48}{1}$ possible outcomes for experiment (2).  (Note that $48
+%= 54 - 6$; there are $48$ numbers in the range 1--54 which aren't on our lotto
+%ticket.)  Thus,
+%\begin{align*}
+%   P(\text{second prize})
+%    &= \frac{\#\{\text{lotto tickets that match exactly five numbers}\}}
+%         {\#\{\text{lotto tickets\}}} \\
+%     &= \frac{\binom{6}{5}\binom{48}{1}}{\binom{54}{6}}.
+%\end{align*}
+%
+%The computation for third prize is similar to the computation for second
+%prize:
+%
+%\begin{align*}
+%   P(\text{third prize})
+%    &= \frac{\#\{\text{lotto tickets that match exactly four numbers}\}}
+%         {\#\{\text{lotto tickets\}}} \\
+%     &= \frac{\binom{6}{4}\binom{48}{2}}{\binom{54}{6}}.
+%\end{align*}
+
+
+\vspace{\stretch{1}}
+
+
+\question \textbf{Quality assurance.}  Suppose we have a batch of $100$ light bulbs,
+which contains $5$ defective bulbs.  If we pick $10$ for testing, what is the
+probability that no bulbs in the sample are defective?  We can answer this
+question in three steps.
+
+\begin{parts}
+
+\part How many ways are there of picking $10$ bulbs for testing out of $100$?
+
+\begin{solution}
+\[
+  \binom{100}{10}
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part How many ways are there of picking $10$ non-defective bulbs?
+
+\begin{solution}
+\[
+  \binom{95}{10}
+\]
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\part What is the probability that there are no defective bulbs in your sample
+of $10$?
+
+\begin{solution}
+\begin{align*}
+  P(\text{no defects in sample})
+    &= \frac{\binom{95}{10}}{\binom{100}{10}} \\
+    &= 58\%.
+\end{align*}
+\end{solution}
+
+\vspace{\stretch{1}}
+
+\end{parts}
+
+
+\newpage
+\question \textbf{The Birthday Problem.} A class has 50 students.  What is the probability that at least
+two students have the same birthday?  Assume that each person in the class was
+assigned a random birthday between January 1 and December 31.
+
+\begin{solution}
+Assume that everyone in the class is randomly assigned a birthday, which
+corresponds to number between 1 and 365 representing the day of the year.
+It turns out to be much easier to compute the probability using the complement
+rule, as
+\[
+  \Pr(\text{at least 2 people have the same birthday})
+  = 1 - \Pr(\text{all 50 birthdays are different}).
+\]
+
+
+
+We first compute the size of sample space. That is $365^{20}$.
+
+Next, we compute the number of ways to assign 365 birthdays to 20 students, and no two students can have the same birthday.
+That is $P(365,20)=\frac{365!}{345!}$.
+
+Finally, the probability is
+$$ \frac{P(365,20)}{365^{20}}$$
+
+\end{solution}
+
+
+
+
+
+\end{questions}
+
+\end{document}
+

@@ -1,0 +1,15 @@
+require("RColorBrewer")
+palette(brewer.pal(8, "Set1"))
+set.seed(0)
+
+x <- c(rnorm(500, mean=2.5), rnorm(500, mean=7.5))
+
+pdf("hist-bimodal.pdf", width=5, height=5)
+hist(x, "Scott", col=1)
+dev.off()
+
+pdf("hist-meanmed-bimodal.pdf", width=5, height=5)
+hist(x, "Scott", col=1)
+abline(v = median(x), lwd=3, lty=1)
+abline(v = mean(x), lwd=3, lty=2)
+dev.off()
